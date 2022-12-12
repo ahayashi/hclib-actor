@@ -117,10 +117,5 @@ models_mask                          (-M)= 0
 !!! note
 
     Lambda versions may not work on the docker environment due to the address space layout randomization.
-   
-
-!!! todo
-
-    Change the default folder to `test`. Remove the warnings.
 
 
