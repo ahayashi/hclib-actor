@@ -23,10 +23,6 @@ Currently, there are two versions of `Dockerfile`: one is based on the latest ve
     * [Dockerfile for bale_old](https://github.com/srirajpaul/hclib/blob/bale_actor/modules/bale_actor/docker/Dockerfile)
 
 
-!!! todo
-
-    Update the bale benchmarks in the `bale3_actor` branch to use the latest graph creation API.
-
 
 ## Build the `Dockerfile`
 
@@ -83,10 +79,6 @@ Within the container, the following environment variables are defined
   
     Do NOT change the value of `HCLIB_WORKER`. In the current implementation, we exploit the OpenSHMEM PE-level parallelism, where each PE is associated with a physical/virtual CPU core, and creating multiple workers per PE can degrade the performance and cause an error.
     
-    
-!!! todo    
-
-    Change `build_unknown` to `build_sos`
 
 ## Run the histogram example
 
