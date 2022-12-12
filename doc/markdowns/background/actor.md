@@ -3,7 +3,7 @@
 The actor model is a message-based concurrency model. In the world of the actor model, you can imagine that multiple actors are concurrently running and communicating each other via message-passing. 
 
 <figure markdown>
-  ![The Actor Model](../figs/ActorModel.png){ width="450" }
+  ![The Actor Model](../figs/ActorModel.png){ width="550" }
   <figcaption>The Actor Model</figcaption>
 </figure>
 
