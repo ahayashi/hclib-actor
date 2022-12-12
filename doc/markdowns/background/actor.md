@@ -19,4 +19,6 @@ An actor has 1) an immutable identity, 2) encapsulated mutable local state , 3) 
 
 ## Reference
 
+- Paul, Sri Raj, Akihiro Hayashi, Kun Chen, and Vivek Sarkar. "A Productive and Scalable Actor-Based Programming System for PGAS Applications." In International Conference on Computational Science, pp. 233-247. Springer, Cham, 2022.
+
 - "COMP 322: Fundamentals of Parallel Programming Lecture 21: Actors" by Prof. Vivek Sarkar.
