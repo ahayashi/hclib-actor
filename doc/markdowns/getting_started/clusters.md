@@ -177,6 +177,7 @@ export HCLIB_WORKERS=1
 
     Example Slurm script(`example.sbatch`):
     ``` title="example.sbatch"
+    #!/bin/bash
     #SBATCH -Joshmem                    # name of job
     #SBATCH --account=GT-XXXXXXX        # account to which job is charged
     #SBATCH -n 16                       # resources allocated, 16 processors
