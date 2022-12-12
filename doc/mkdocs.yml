@@ -1,0 +1,70 @@
+site_name: HClib-Actor Documentation
+site_url: https://github.gatech.edu/pages/Habanero/hclib-actor/
+repo_name: hclib_actor
+repo_url: https://github.gatech.edu/Habanero/hclib-actor
+edit_uri: blob/main/doc/markdowns
+docs_dir: markdowns
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+#    - navigation.indexes
+    - toc:
+      permalink: true
+
+  favicon: material/chili-hot-outline
+  icon:
+    logo: material/chili-hot-outline
+
+nav:
+   - Home: index.md
+   - Background:
+#       - background/index.md
+       - Theory:
+          - Bulk Synchronous Parallel: background/bsp.md
+          - Partitioned Global Address Space: background/pgas.md
+          - Actor Model: background/actor.md
+       - Practice:
+          - OpenSHMEM: background/openshmem.md
+          - Bale: 
+             - Summary: background/bale.md
+             - spmat: background/spmat.md
+             - libgetput: background/libgetput.md
+          - Habanero-C Library (HClib): background/hclib.md
+   - Getting Started:
+#       - getting_started/index.md
+       - Containers:
+          - Docker: getting_started/docker.md
+          - Singularity: getting_started/singularity.md       
+       - Clusters/Supercomputers: 
+          - NERSC/ORNL/PACE: getting_started/clusters.md
+   - Writing HClib-Actor Programs:
+       - Theory:
+          - Fine-grained-Asynchronous Bulk-Synchronous Parallelism (FABS): details/fabsp.md
+          - Automatic Termination Detection: details/termination.md
+       - Practice:
+          - Step-by-step Guide: details/basics.md
+          - The remote put pattern: details/put.md
+          - The remote get pattern: details/get.md
+          - The yield() operation: details/yield.md
+   - API Reference: api/reference.md
+   - History: history/history.md
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+  - attr_list
+  - md_in_html

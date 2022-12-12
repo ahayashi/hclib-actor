@@ -1,0 +1,197 @@
+## Prerequisites
+
+* a cluster/supercomputer with OpenSHMEM or UPC installed.
+
+As discussed in the [background section](../background/bale.md), `hclib-actor` depends on Bale, which depends on either UPC or OpenSHMEM. Here we mainly explain steps to load OpenSHMEM, build bale, and build `hclib-actor` on three platforms: Perlmutter@NERSC, Cori@NERSC, Summit@ORNL, and PACE (Pheonix)@ GT.
+
+## Load OpenSHMEM  
+
+=== "Perlmutter@NERSC"
+
+     Use Cray OpenSHMEMX
+     ```
+     module load cray-openshmemx/11.5.5
+     module load cray-pmi/6.1.3
+     export PLATFORM=ex
+     export CC=cc
+     export CXX=CC
+     ```
+
+=== "Cori@NERSC"
+
+     Use Cray SHMEM
+     ```
+     module swap PrgEnv-intel PrgEnv-gnu
+     module load cray-shmem 
+     module load python3
+     export PLATFORM=xc30
+     export CC=cc
+     export CXX=CC
+     ```
+
+=== "Summit@ORNL"
+
+    Use OpenMPI's SHMEM (OSHMEM)
+    ```
+    module load python
+    export PLATFORM=oshmem
+    export CC=oshcc
+    export CXX=oshc++
+    ```
+
+=== "PACE@GATech"
+
+    Use OpenMPI's SHMEM (OSHMEM)
+    ```
+    source ./oshmem.sh
+    ```
+
+!!! note
+
+    You need to re-run the above commands every time you login to a cluster/supercomputer.
+
+
+## Build Bale and HClib
+
+!!! note
+
+    PACE@GATech users can skip this part as the script automatically builds Bale and HClib
+
+### Bale
+
+```
+git clone https://github.com/jdevinney/bale.git bale
+cd bale/src/bale_classic
+./bootstrap.sh
+python3 ./make_bale -s
+cd ../../../
+```
+
+!!! note
+
+    On Perlmutter, do `patch -p1 < path/to/perlmutter.patch` in `bale` directory after `git clone`
+
+
+!!! note
+  
+    Bale will be installed in `bale/src/bale_classic/build_${PLATFORM}`
+    
+
+### HClib
+
+```
+git clone https://github.com/srirajpaul/hclib
+cd hclib
+git fetch && git checkout bale3_actor
+./install.sh
+cd modules/bale_actor && make
+cd benchmarks
+unzip ../inc/boost.zip -d ../inc/
+cd ../../../../
+```
+
+### Setting environment variables
+```
+export BALE_INSTALL=$PWD/bale/src/bale_classic/build_${PLATFORM}
+export HCLIB_ROOT=$PWD/hclib/hclib-install
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BALE_INSTALL/lib:$HCLIB_ROOT/lib:$HCLIB_ROOT/../modules/bale_actor/lib
+export HCLIB_WORKERS=1
+```
+
+## Run
+
+=== "Perlmutter@NERSC"
+
+     Example Slurm script (`example.slurm`)
+     ``` title="example.slurm"
+     #!/bin/bash
+     #SBATCH -q regular
+     #SBATCH -N 2
+     #SBATCH -C cpu
+     #SBATCH -t 0:05:00
+
+     srun -n 256 ./histo_selector
+     ```
+    Submit a job
+    ```
+    sbatch example.slurm
+    ```
+
+=== "Cori@NERSC"
+
+     Example Slurm script (`example.slurm`)
+     ``` title="example.slurm"
+     #!/bin/bash
+     #SBATCH -q regular               # job is submitted to regular queue
+     #SBATCH -N 2                     # resources allocated, 2 nodes
+     #SBATCH -C haswell               # use haswell nodes
+     #SBATCH -t 00:30:00              # job will run at most 30min
+     
+     srun -n 64 ./histo_selector
+     ```
+    Submit a job
+    ```
+    sbatch example.slurm
+    ```
+
+=== "Summit@ORNL"
+   
+    Example LSF script (`example.lsf`)
+    ``` title="example.lsf"
+    #!/bin/bash
+    #BSUB -P XXXXX                     # project to which job is charged
+    #BSUB -W 0:30                      # job will run at most 30 min
+    #BSUB -nnodes 2                    # resources allocated, 2 nodes
+    #BSUB -alloc_flags smt1            # one logical thread per physical core
+    #BSUB -J histo                     # name of job
+    #BSUB -o histo.%J                  # stdout file
+    #BSUB -e histo.%J                  # stderror file
+
+    jsrun -n 84 ./histo_selector
+    ```
+    Submit a job
+    ```
+    bsub example.lsf
+    ```
+
+=== "PACE@GATech"
+
+    Example PBS script(`example.pbs`):
+    ``` title="example.pbs"
+    #PBS -N oshmem                      # name of job
+    #PBS -A GT-XXXXXXXX                 # account to which job is charged, ex: GT-gburdell3
+    #PBS -l nodes=2:ppn=24              # resources allocated, 1 node 2 processors
+    #PBS -l walltime=0:15:00            # job will run at most 15 min
+    #PBS -q inferno                     # job is submitted to inferno queue
+    #PBS -j oe                          # output and error is combined into the same file
+    #PBS -o oshmem.out                  # output file is named gettingStarted.out
+
+    echo "Started on `/bin/hostname`"   # prints name of compute node job was started on
+    cd $PBS_O_WORKDIR                   # changes into directory where script was submitted from
+
+    source ./oshmem.sh
+
+    cd ./hclib/modules/bale_actor/test
+    oshrun -n 48 ./histo_selector
+    ```
+    Submit a job:
+    ```
+    qsub example.pbs
+    ```
+
+!!! tip
+
+     Make sure that the environment variables above are properly set in a job.
+     
+
+Example output:
+    ```
+    Running histo on 48 threads
+    buf_cnt (number of buffer pkgs)      (-b)= 1024
+    Number updates / thread              (-n)= 1000000
+    Table size / thread                  (-T)= 1000
+    models_mask                          (-M)= 0
+       0.106 seconds
+    ```
+    
+
