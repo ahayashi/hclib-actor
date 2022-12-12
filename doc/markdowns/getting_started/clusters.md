@@ -4,6 +4,25 @@
 
 As discussed in the [background section](../background/bale.md), `hclib-actor` depends on Bale, which depends on either UPC or OpenSHMEM. Here we mainly explain steps to load OpenSHMEM, build bale, and build `hclib-actor` on three platforms: Perlmutter@NERSC, Cori@NERSC, Summit@ORNL, and PACE (Pheonix)@ GT.
 
+## Initializing Scripts  
+
+=== "Perlmutter@NERSC"
+
+     [oshmem-perlmutter.sh](https://github.com/ahayashi/hclib-actor/blob/f3bf2e15973f72cf6890fe189b166f1b271318db/cluster-scripts/oshmem-perlmutter.sh)
+
+=== "Cori@NERSC"
+
+     [oshmem-cori.sh]()
+
+=== "Summit@ORNL"
+
+    [oshmem-summit.sh]()
+
+=== "PACE@GATech"
+
+    [oshmem-slurm.sh](https://github.com/ahayashi/hclib-actor/blob/f3bf2e15973f72cf6890fe189b166f1b271318db/cluster-scripts/oshmem-slurm.sh)
+
+
 ## Load OpenSHMEM  
 
 === "Perlmutter@NERSC"
@@ -43,12 +62,12 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
 
     Use OpenMPI's SHMEM (OSHMEM)
     ```
-    source ./oshmem.sh
+    source ./oshmem-slurm.sh
     ```
 
 !!! note
 
-    You need to re-run the above commands every time you login to a cluster/supercomputer.
+    You need to re-run the above commands every time you login to a cluster/supercomputer. You can use the respective script for the platform using the above pre-prepared scripts (`source ./oshmem-{PLATFORM}.sh`).
 
 
 ## Build Bale and HClib
@@ -69,7 +88,7 @@ cd ../../../
 
 !!! note
 
-    On Perlmutter, do `patch -p1 < path/to/perlmutter.patch` in `bale` directory after `git clone`
+    On Perlmutter, do `patch -p1 < path/to/perlmutter.patch` in `bale` directory after `git clone`. You can find `perlmutter.patch` [here](https://github.com/ahayashi/hclib-actor/blob/f3bf2e15973f72cf6890fe189b166f1b271318db/cluster-scripts/perlmutter.patch).
 
 
 !!! note
