@@ -175,27 +175,26 @@ export HCLIB_WORKERS=1
 
 === "PACE@GATech"
 
-    Example PBS script(`example.pbs`):
-    ``` title="example.pbs"
-    #PBS -N oshmem                      # name of job
-    #PBS -A GT-XXXXXXXX                 # account to which job is charged, ex: GT-gburdell3
-    #PBS -l nodes=2:ppn=24              # resources allocated, 1 node 2 processors
-    #PBS -l walltime=0:15:00            # job will run at most 15 min
-    #PBS -q inferno                     # job is submitted to inferno queue
-    #PBS -j oe                          # output and error is combined into the same file
-    #PBS -o oshmem.out                  # output file is named gettingStarted.out
+    Example Slurm script(`example.sbatch`):
+    ``` title="example.sbatch"
+    #SBATCH -Joshmem                    # name of job
+    #SBATCH --account=GT-XXXXXXX        # account to which job is charged
+    #SBATCH -n 16                       # resources allocated, 16 processors
+    #SBATCH -t15                        # job will run at most 15mins
+    #SBATCH -qinferno                   # job is submitted to inferno queue
+    #SBATCH -ooshmem.out                # output file is named oshmem.out      
 
     echo "Started on `/bin/hostname`"   # prints name of compute node job was started on
-    cd $PBS_O_WORKDIR                   # changes into directory where script was submitted from
+    cd $SLURM_SUBMIT_DIR                # changes into directory where script was submitted from
 
-    source ./oshmem.sh
+    source ./oshmem-slurm.sh
 
     cd ./hclib/modules/bale_actor/test
-    oshrun -n 48 ./histo_selector
+    srun -n 48 ./histo_selector
     ```
     Submit a job:
     ```
-    qsub example.pbs
+    sbatch example.sbatch
     ```
 
 !!! tip
