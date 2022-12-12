@@ -1,8 +1,13 @@
-!!! todo
+## `hclib`'s Actor
 
-    List the API routines used in the Bale benchmark decide whether to create a unified namespace (e.g., `hclib`) or not.
-    
-(Work-in-progress)
+| API                  | Freq    | Note |
+| :-                   | :-      |:-   |
+| `launch()`           | COMMON |  |
+| `finish()`             | COMMON  |    |
+| `send()`              | COMMON  |    |
+| `done()`               | COMMON  |    |
+| `yield()`              | OCCASIONAL  |    |
+
 
 ## `libgetput`
 
