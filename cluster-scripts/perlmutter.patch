@@ -1,0 +1,13 @@
+diff --git a/src/bale_classic/convey/twohop.c b/src/bale_classic/convey/twohop.c
+index b45b25d..741d1e3 100644
+--- a/src/bale_classic/convey/twohop.c
++++ b/src/bale_classic/convey/twohop.c
+@@ -297,7 +297,7 @@ column_advance(twohop_t* twohop)
+     else
+       shmemx_team_alltoallv(twohop->col_recv_bufs, twohop->col_offsets, twohop->recv_sizes,
+                             twohop->col_send_bufs, twohop->col_offsets, twohop->send_sizes,
+-                            twohop->col_team, twohop->col_sync[twohop->col_flip]);
++                            twohop->col_team);//, twohop->col_sync[twohop->col_flip]);
+     twohop->col_flip ^= 1;
+ #else
+     int error = MPI_Alltoall(twohop->send_sizes, 1, MPI_INT,
