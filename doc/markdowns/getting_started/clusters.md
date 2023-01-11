@@ -107,6 +107,7 @@ cd modules/bale_actor && make
 cd benchmarks
 unzip ../inc/boost.zip -d ../inc/
 cd ../../../../
+make
 ```
 
 ### Setting environment variables
