@@ -104,10 +104,10 @@ cd hclib
 git fetch && git checkout bale3_actor
 ./install.sh
 cd modules/bale_actor && make
-cd benchmarks
+cd test
 unzip ../inc/boost.zip -d ../inc/
-cd ../../../../
 make
+cd ../../../../
 ```
 
 ### Setting environment variables
