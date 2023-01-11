@@ -1,7 +1,7 @@
 #!/bin/bash
 
-module load cray-openshmemx/11.5.5
-module load cray-pmi/6.1.3
+module load cray-openshmemx/11.5.6
+module load cray-pmi/6.1.7
 
 export PLATFORM=ex
 export BALE_INSTALL=$HOME/bale/src/bale_classic/build_ex
