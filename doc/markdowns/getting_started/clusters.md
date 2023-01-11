@@ -29,8 +29,8 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
 
      Use Cray OpenSHMEMX
      ```
-     module load cray-openshmemx/11.5.5
-     module load cray-pmi/6.1.3
+     module load cray-openshmemx/11.5.6
+     module load cray-pmi/6.1.7
      export PLATFORM=ex
      export CC=cc
      export CXX=CC
