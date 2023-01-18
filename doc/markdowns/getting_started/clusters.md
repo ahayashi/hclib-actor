@@ -103,9 +103,11 @@ git clone https://github.com/srirajpaul/hclib
 cd hclib
 git fetch && git checkout bale3_actor
 ./install.sh
+source hclib-install/bin/hclib_setup_env.sh
 cd modules/bale_actor && make
 cd test
 unzip ../inc/boost.zip -d ../inc/
+export BALE_INSTALL=$PWD/bale/src/bale_classic/build_${PLATFORM}
 make
 cd ../../../../
 ```
