@@ -7,14 +7,14 @@ docs_dir: markdowns
 theme:
   name: material
   features:
-#   - navigation.tabs
-#   - navigation.tabs.sticky
     - navigation.sections
     - navigation.expand
-#    - navigation.indexes
     - toc:
       permalink: true
-    - toc.integrate
+#   - navigation.tabs
+#   - navigation.tabs.sticky    
+#   - navigation.indexes
+#   - toc.integrate
 
   favicon: material/chili-hot-outline
   icon:
