@@ -14,7 +14,6 @@ theme:
 #    - navigation.indexes
     - toc:
       permalink: true
-    - toc.integrate
 
   favicon: material/chili-hot-outline
   icon:
