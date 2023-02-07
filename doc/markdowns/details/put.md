@@ -3,7 +3,7 @@ In the remote PUT pattern, a PE requests a remote PE to update its local data. O
 
 One benefit of this communication model is that it does not require remote atomics (e.g., `shmem_atomic_add()`) due to the sequential processing of messages. 
 
-The figure below illustrates the PUT pattern. While the figure only shows one PE0 to PE1 communication for presentation purposees, in reality, each PE does the sender's and receiver's role in an interleaved fashion.
+The figure below illustrates the PUT pattern. While the figure only shows one PE0 to PE1 communication for presentation purposes, in reality, each PE does the sender's and receiver's role in an interleaved fashion.
 
 <figure markdown>
   ![PUT](../figs/put.png){ width="300" }

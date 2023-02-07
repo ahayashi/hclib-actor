@@ -2,7 +2,7 @@
 
 In the remote GET pattern, there are two communications: 1) a PE requests a remote PE to send back its local data (REQUEST), and 2) the receiver actually sends back data to the requester (REPLY). Since this GET communication is asynchronous, when the requester creates an asynchronous message, it also specifies where to store received data so the receiver can know the destination location in the requester's memory. 
 
-The figure below illustrates the GET pattern. While the figure only shows one PE0 -> PE1 -> PE0 communication for presentation purposees, in reality, each PE does the sender's and receiver's role in an interleaved fashion.
+The figure below illustrates the GET pattern. While the figure only shows one PE0 -> PE1 -> PE0 communication for presentation purposes, in reality, each PE does the sender's and receiver's role in an interleaved fashion.
 
 <figure markdown>
   ![GET](../figs/get.png){ width="300" }
