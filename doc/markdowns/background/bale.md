@@ -4,7 +4,7 @@ Bale provides a library-based distributed programming model with a special focus
 
 `hclib-actor` mainly depends on the following libraries from Bale:
 
-- `libgetput`: a library that enables one-sided communications, remote atomics, and colletives built on top of UPC/OpenSHMEM
+- `libgetput`: a library that enables one-sided communications, remote atomics, and collectives built on top of UPC/OpenSHMEM
 - `spmat`: a library that facilitates the construction/manipulation of distributed sparse matrices, which is built on top of `libgetput`
 - `conveyors`: a communication aggregation library, built on top of `libgetput`
 - `exstack/exstack2`: a preliminary experimental version of `conveyors`.  

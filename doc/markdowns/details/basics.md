@@ -10,7 +10,7 @@ More details on SPMD, OpenSHMEM, Bale, Actor model can be found in the Backgroun
 
 ### Step 1: Create an empty hclib-actor program
 
-To take a first step, let's first write an empty program that 1) initializes and finializes SHMEM, and 2) launches an empty HClib program:
+To take a first step, let's first write an empty program that 1) initializes and finalizes SHMEM, and 2) launches an empty HClib program:
 
 ```c++ linenums="1"
 #include <shmem.h>

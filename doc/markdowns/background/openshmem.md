@@ -1,5 +1,5 @@
 ## What is OpenSHMEM?
-OpenSHMEM is a library-based PGAS programming model. OpenSHMEM is originally from SHMEM, which was firstly introduced by Cray back in 90s, and includes a specification for standarized SHMEM library routines. 
+OpenSHMEM is a library-based PGAS programming model. OpenSHMEM is originally from SHMEM, which was firstly introduced by Cray back in 90s, and includes a specification for standardized SHMEM library routines. 
 
 One of the interesting features of OpenSHMEM is *symmetric variables*. In an OpenSHMEM program, global variables and dynamically allocated variables (by `shmem_malloc`) exist with the same size, type, and relative address on all PEs, and can be directly fed into one-sided communication routines such as put/get, which significantly improves the programmability.
 
