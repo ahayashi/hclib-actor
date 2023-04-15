@@ -55,7 +55,7 @@ nav:
           - The yield() operation: details/yield.md
    - Tools:
        - Performance Tools:
-         - CrayPat: tools/craypat.md
+          - CrayPat: tools/craypat.md
    - API Reference: api/reference.md
    - History: history/history.md
 
