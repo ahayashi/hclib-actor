@@ -18,7 +18,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/cray/pe/perftools/23.02.0/lib64
 # Setup Bale
 git clone https://github.com/jdevinney/bale.git bale
 cd bale
-wget https://github.com/ahayashi/hclib-actor/blob/f3bf2e15973f72cf6890fe189b166f1b271318db/cluster-scripts/perlmutter.patch
+wget https://raw.githubusercontent.com/ahayashi/hclib-actor/master/cluster-scripts/perlmutter.patch
 patch -p1 < perlmutter.patch
 cd ..
 cd bale/src/bale_classic
@@ -35,7 +35,6 @@ source hclib-install/bin/hclib_setup_env.sh
 cd modules/bale_actor && make
 cd benchmarks
 unzip ../inc/boost.zip -d ../inc/
-make
 cd ../../../../
 
 export BALE_INSTALL=$PWD/bale/src/bale_classic/build_${PLATFORM}
