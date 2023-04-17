@@ -4,6 +4,24 @@
 
 As discussed in the [background section](../background/bale.md), `hclib-actor` depends on Bale, which depends on either UPC or OpenSHMEM. Here we mainly explain steps to load OpenSHMEM, build bale, and build `hclib-actor` on three platforms: Perlmutter@NERSC, Cori@NERSC, Summit@ORNL, and PACE (Phoenix)@ GT.
 
+## Installation Scripts  
+
+=== "Perlmutter@NERSC"
+
+     [perlmutter_setup.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/perlmutter_setup.sh)
+
+=== "Cori@NERSC"
+
+     [cori_setup.sh]()
+
+=== "Summit@ORNL"
+
+    [summit_setup.sh]()
+
+=== "PACE@GATech"
+
+    [oshmem-slurm.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/oshmem-slurm.sh)
+
 ## Initializing Scripts  
 
 === "Perlmutter@NERSC"
