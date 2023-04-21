@@ -1,4 +1,4 @@
-##Useful tips when using Srun
+## Useful tips when using srun
 
 ### `cpu-bind` and `-c` 
 `cpu-bind=<binding option>`
