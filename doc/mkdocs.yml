@@ -53,9 +53,10 @@ nav:
           - The remote put pattern: details/put.md
           - The remote get pattern: details/get.md
           - The yield() operation: details/yield.md
-   - Tools:
+   - Tools/Tips:
        - Performance Tools:
           - CrayPat: tools/craypat.md
+       - Tips:   
           - Slurm: tools/slurm.md
    - API Reference: api/reference.md
    - History: history/history.md
