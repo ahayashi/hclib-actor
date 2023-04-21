@@ -50,7 +50,7 @@ pat_build triangle_selector
      - `-T -w`: trace function
         - e.g, `pat_build -w -T <FUNCTION>`
 
-### Step 4: Run the instrumented executable to get a performance data
+### Step 4: Run the instrumented executable to get performance data
 
 #### Option 1: Run the executable with an interactive batch job
 Allocating resources:
@@ -94,14 +94,14 @@ pat_report ./triangle_selector+pat+174621-8716327t
     `.ap2` is used to view performance data graphically with the Cray Apprentice2 tool.
     `.apa` is for suggested `pat_build` options for more detailed tracing experiments.
 
-## Using Apprenyice2 for analyzing results
+## Using Apprentice2 for analyzing results
 
-Cray Apprentice2 is a GUI-based analysis tool that can be used to further explore visualize performance data instrumented with the CrayPat tool. Cray offers a desktop version of the Cray Apprentice2 visualizer so you can do your analysis locally
+Cray Apprentice2 is a GUI-based analysis tool that can be used to visualize performance data instrumented with the CrayPat tool. Cray offers a desktop version of the Cray Apprentice2 visualizer so you can do your analysis locally.
 
 To install a desktop version, you can find the installer on Perlmutter as below:
 `$CRAYPAT_ROOT/share/desktop_installers`
 
-After installing Apprentice2 visualizer, open `.ap2` file to visualized analyses results.
+`scp` an approparite installer to your local machine and install it. After that, you will be able to open `.ap2` file with Apprentice2.
 
 !!! tips
 
@@ -135,7 +135,7 @@ This will generate a trace of interest in the performance data which can be foun
 
 ## Collecting hardware performance counters (HWPC)
 
-The Performance Application Programming Interface (PAPI) allows you to programmatically collect hardware performance counters in your code.
+The Performance Application Programming Interface (PAPI) allows you to programmatically collect hardware performance counters (HWPC) in your code. While the user is supposed to manually insert PAPI routines to specify what HWPCs are measured and when to start/stop measuing them, CrayPat allows the user to just specify HWPC name(s) in an environment variable. Here are the steps to collect HWPCs with CrayPat:
 
 ### Step 1: Find available hardware counters
 Available hardware counters can be find by `papi_avail`.
