@@ -111,13 +111,17 @@ To install a desktop version, you can find the installer on Perlmutter as below:
 
 ## Specifying profiling region
 CrayPat performance API can be use to identify the region of interest (ROG) for analysis.
+
 - `PAT_record(int state)`
+
 	- Setting the recording state to **PAT_STATE_ON** or **PAT_STATE_OFF**
 	- Needs to be inserted before the ROG
 - `PAT_region_begin(int id, char *label)`
+
 	- Defines the boundaries of a region
 	- Needs to be inserted at the start the ROG
 - `PAT_region_end(int id);`
+
 	- regions must be either separate or nested
 	- Needs to be inserted at the end of ROG
 
@@ -142,6 +146,7 @@ Available hardware counters can be find by `papi_avail`.
 
 ### Step 2: Selecting the hardware counters
 Setting the environment variable `PAT_RT_PERFCTR` to specific events/group:
+
  - Predefined Counter Groups, e.g., `export PAT_RT_PERFCTR=0`.
  - Specify individual events (maximum of 4 event at a time), e.g. `export PAT_RT_PERFCTR="PAPI_L2_DCM,PAPI_L2_ICM"`.
 
@@ -151,6 +156,7 @@ Setting the environment variable `PAT_RT_PERFCTR` to specific events/group:
 
 ### Step 3: Build and run the instrumented excutable with CrayPat
 Repeat same with the step in the above Step-by-Step section:
+
 - Generate the instrumented excutable with `pat_build`
 - Run the excutable to get performance data
 - Generate human-readable content with `pat_report`
