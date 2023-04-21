@@ -56,6 +56,7 @@ nav:
    - Tools:
        - Performance Tools:
           - CrayPat: tools/craypat.md
+          - Slurm: tools/slurm.md
    - API Reference: api/reference.md
    - History: history/history.md
 
