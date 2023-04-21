@@ -1,8 +1,6 @@
 ## Introduction
 
-CrayPat (Cray Performance Measurement and Analysis toolset) is Cray’s performance analysis tool offered by Cray. It can be used for profiling, tracing and counter based hardware performance analysis. It has a large feature set and provides access to a wide variety of performance experiments that measure how an executable program consumes resources while it is running, as well as several different user interfaces that provide access to the experiment and reporting functions.
-
-Since CrayPat is only available on Cray systems, let us give a brief step-by-step guidance on how to use it on **Perlmutter**.
+CrayPat (Cray Performance Measurement and Analysis toolset) is Cray’s performance analysis tool offered by Cray. Since CrayPat is only available on Cray systems, let us give a brief step-by-step guidance on how to use it on **Perlmutter**.
 
 ## Step-by-Step Guide
 Here we will take Triangle Counting selector as an example:
@@ -42,9 +40,9 @@ pat_build triangle_selector
 !!! note
 
     `pat_build` has different option that can trace a specific function(s)
-	- `-u`: trace all user functions routine by routine
-	- `-T -w`: trace function
-		- e.g, `pat_build -w -T <FUNCTION>`
+     - `-u`: trace all user functions routine by routine
+     - `-T -w`: trace function
+        - e.g, `pat_build -w -T <FUNCTION>`
 
 ### Step 4: Run the instrumented executable to get a performance data
 
@@ -57,8 +55,8 @@ Run the excutable to generate a directory (e.g., `triangle_selector+pat+174621-8
 ```
 srun  -n 128 --cpu-bind=cores ./triangle_selector+pat
 ```
-#### Option 2: Run the executable with sbatch script
 
+#### Option 2: Run the executable with sbatch script
 ```
 #!/bin/bash
 #SBATCH -q regular
@@ -92,12 +90,12 @@ pat_report ./triangle_selector+pat+174621-8716327t
 
 ## Using Apprenyice2 for analyzing results
 
-Cray Apprentice2 is a graphical analysis tool used to further explore visualize performance data instrumented with the CrayPat tool
+Cray Apprentice2 is a GUI-based analysis tool that can be used to further explore visualize performance data instrumented with the CrayPat tool. Cray offers a desktop version of the Cray Apprentice2 visualizer so you can do your analysis locally
 
-For installing local Cray Apprentice2 visualizer, you can find the installer in Perlmutter as below
+To install a desktop version, you can find the installer on Perlmutter as below:
 `$CRAYPAT_ROOT/share/desktop_installers`
 
-After installing Apprentice2 visualizer, the open the corresponding generated folder can see the visual analyzing results.
+After installing Apprentice2 visualizer, open `.ap2` file to visualized analyses results.
 
 !!! tips
 
@@ -131,15 +129,15 @@ This will generate a trace of interest in the performance data which can be foun
 
 ## Collecting hardware performance counters (HWPC)
 
-The Performance Application Programming Interface (PAPI) supplies a consistent interface and methodology for collecting performance counter information from various hardware and software components, including most major CPUs, GPUs, accelerators, interconnects, I/O systems, and power interfaces, as well as virtual cloud environments.
+The Performance Application Programming Interface (PAPI) allows you to programmatically collect hardware performance counters in your code.
 
 ### Step 1: Find available hardware counters
 Available hardware counters can be find by `papi_avail`.
 
 ### Step 2: Selecting the hardware counters
-Setting environment variable `PAT_RT_PERFCTR` to specific events/group
- - Predefined Counter Groups, e.g. `export PAT_RT_PERFCTR=0`.
- - specify individual events (maximum of 4 event at a time), e.g. `export PAT_RT_PERFCTR="PAPI_L2_DCM,PAPI_L2_ICM"`.
+Setting the environment variable `PAT_RT_PERFCTR` to specific events/group:
+ - Predefined Counter Groups, e.g., `export PAT_RT_PERFCTR=0`.
+ - Specify individual events (maximum of 4 event at a time), e.g. `export PAT_RT_PERFCTR="PAPI_L2_DCM,PAPI_L2_ICM"`.
 
 !!! note
 
