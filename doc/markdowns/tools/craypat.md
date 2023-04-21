@@ -5,6 +5,12 @@ CrayPat (Cray Performance Measurement and Analysis toolset) is Cray’s performa
 ## Step-by-Step Guide
 Here we will take Triangle Counting selector as an example:
 
+### Step 0: Load compilers
+It is important to load compiler modules before Step 1. In our case, `source` our setup script:
+```
+source ./oshmem-perlmutter.sh
+```
+
 ### Step 1: Unload/load required modules
 ```
 module unload darshan
