@@ -6,12 +6,12 @@ CrayPat (Cray Performance Measurement and Analysis toolset) is Cray’s performa
 Here we will take Triangle Counting selector as an example:
 
 ### Step 0: Load compilers
-It is important to load compiler modules before Step 1. In our case, `source` our setup script:
+It is important to load compiler modules before Step 1. In our case, `source` [oshmem-perlmutter.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/oshmem-perlmutter.sh):
 ```
 source ./oshmem-perlmutter.sh
 ```
 
-### Step 1: Unload/load required modules
+### Step 1: Unload/Load required modules
 ```
 module unload darshan
 module load perftools-base perftools
@@ -46,9 +46,10 @@ pat_build triangle_selector
 !!! note
 
     `pat_build` has different option that can trace a specific function(s)
+    
      - `-u`: trace all user functions routine by routine
      - `-T -w`: trace function
-        - e.g, `pat_build -w -T <FUNCTION>`
+        - e.g, `pat_build -w -T selector_function`
 
 ### Step 4: Run the instrumented executable to get performance data
 
@@ -89,9 +90,55 @@ Run `pat_report` with the generated directory name, which will output a text rep
 pat_report ./triangle_selector+pat+174621-8716327t
 ```
 
+#### Example text report
+```
+CrayPat/X:  Version 23.03.0 Revision 46f710008  02/13/23 20:24:04
+Number of PEs (MPI ranks):   128
+Numbers of PEs per Node:     128
+Numbers of Threads per PE:     1
+Number of Cores per Socket:   64
+Execution start time:  Fri Apr 14 13:44:36 2023
+System name and speed:  nid004675  2.671 GHz (nominal)
+AMD   Milan                CPU  Family: 25  Model:  1  Stepping:  1
+Core Performance Boost:  All 128 PEs have CPB capability
+Current path to data file:
+  /Users/joseph/triangle_selector+pat+197953-8716330t   (RTS, 128 data files)
+Notes for table 1:
+  This table shows functions that have significant exclusive time,
+    averaged across ranks.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O profile ...
+Table 1:  Profile by Function Group and Function
+  Time% |     Time |     Imb. |  Imb. | Calls | Group
+        |          |     Time | Time% |       |  Function
+        |          |          |       |       |   PE=HIDE
+ 100.0% | 6.079316 |       -- |    -- | 404.0 | Total
+|-------------------------------------------------------------------
+|  95.2% | 5.789928 |       -- |    -- |   2.0 | USER
+||------------------------------------------------------------------
+||  47.7% | 2.901679 | 0.292158 |  9.2% |   1.0 | main
+||  47.5% | 2.888249 | 0.000057 |  0.0% |   1.0 | #1.selector_function
+||==================================================================
+|   4.8% | 0.289263 | 0.100863 | 26.1% |   2.0 | DL
+||------------------------------------------------------------------
+||   4.8% | 0.289263 | 0.100863 | 26.1% |   2.0 | dlopen
+|===================================================================
+Notes for table 2:
+  This table shows functions that have the most significant exclusive
+    time, taking the maximum time across ranks and threads.
+  For further explanation, see the "General table notes" below, or 
+    use:  pat_report -v -O profile_max ...
+Table 2:  Profile of maximum function times
+  Time% |     Time |     Imb. |  Imb. | Function
+        |          |     Time | Time% |  PE=[max,min]
+|-----------------------------------------------------------
+| 100.0% | 3.193838 | 0.292158 |  9.2% | main
+...
+```
+
 !!! note
 
-    `.ap2` is used to view performance data graphically with the Cray Apprentice2 tool.
+    `.ap2` is used to view performance data graphically with the Cray Apprentice2 tool.  
     `.apa` is for suggested `pat_build` options for more detailed tracing experiments.
 
 ## Using Apprentice2 for analyzing results
@@ -101,11 +148,12 @@ Cray Apprentice2 is a GUI-based analysis tool that can be used to visualize perf
 To install a desktop version, you can find the installer on Perlmutter as below:
 `$CRAYPAT_ROOT/share/desktop_installers`
 
-`scp` an approparite installer to your local machine and install it. After that, you will be able to open `.ap2` file with Apprentice2.
+`scp` an appropriate installer to your local machine and install it. After that, you will be able to open `.ap2` file with Apprentice2.
 
 !!! tips
 
-    If you encounter this error: `/some/path/./a.out: error while loading shared libraries: pat.so: cannot open shared object file: No such file or directory`
+    If you encounter this error: `/some/path/./a.out: error while loading shared libraries: pat.so: cannot open shared object file: No such file or directory`  
+    
     Try this: `export LD_LIBRARY_PATH=$CRAY_LD_LIBRARY_PATH:$LD_LIBRARY_PATH`
 
 
@@ -113,15 +161,12 @@ To install a desktop version, you can find the installer on Perlmutter as below:
 CrayPat performance API can be use to identify the region of interest (ROG) for analysis.
 
 - `PAT_record(int state)`
-
 	- Setting the recording state to **PAT_STATE_ON** or **PAT_STATE_OFF**
 	- Needs to be inserted before the ROG
 - `PAT_region_begin(int id, char *label)`
-
 	- Defines the boundaries of a region
 	- Needs to be inserted at the start the ROG
 - `PAT_region_end(int id);`
-
 	- regions must be either separate or nested
 	- Needs to be inserted at the end of ROG
 
@@ -142,7 +187,33 @@ This will generate a trace of interest in the performance data which can be foun
 The Performance Application Programming Interface (PAPI) allows you to programmatically collect hardware performance counters (HWPC) in your code. While the user is supposed to manually insert PAPI routines to specify what HWPCs are measured and when to start/stop measuing them, CrayPat dramatically facilitate that process. Specifically, all the user has to do is to just specify HWPC name(s) in an environment variable. Here are the steps to collect HWPCs with CrayPat:
 
 ### Step 1: Find available hardware counters
-Available hardware counters can be find by `papi_avail`.
+Available hardware counters can be find with `papi_avail`.
+
+Available hardware counters on **Perlmutter** 
+```
+PAPI_L1_DCM  		Level 1 data cache misses
+PAPI_L2_DCM  		Level 2 data cache misses
+PAPI_L2_ICM  		Level 2 instruction cache misses
+PAPI_TLB_DM  		Data translation lookaside buffer misses
+PAPI_TLB_IM 		Instruction translation lookaside buffer misses
+PAPI_BR_MSP  		Conditional branch instructions mispredicted
+PAPI_TOT_INS  		Instructions completed
+PAPI_FP_INS  		Floating point instructions
+PAPI_BR_INS  		Branch instructions
+PAPI_VEC_INS  		Vector/SIMD instructions (could include integer)
+PAPI_TOT_CYC  		Total cycles
+PAPI_L2_DCH  		Level 2 data cache hits
+PAPI_L1_DCA 		Level 1 data cache accesses
+PAPI_L2_DCR  		Level 2 data cache reads
+PAPI_L2_ICH  		Level 2 instruction cache hits
+PAPI_L2_ICA  		Level 2 instruction cache accesses
+PAPI_L2_ICR  		Level 2 instruction cache reads
+PAPI_FML_INS  		Floating point multiply instructions
+PAPI_FAD_INS  		Floating point add instructions
+PAPI_FDV_INS  		Floating point divide instructions
+PAPI_FSQ_INS  		Floating point square root instructions
+PAPI_FP_OPS  		Floating point operations
+```
 
 ### Step 2: Selecting the hardware counters
 Setting the environment variable `PAT_RT_PERFCTR` to specific events/group:
