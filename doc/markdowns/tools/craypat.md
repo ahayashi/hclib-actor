@@ -135,7 +135,7 @@ This will generate a trace of interest in the performance data which can be foun
 
 ## Collecting hardware performance counters (HWPC)
 
-The Performance Application Programming Interface (PAPI) allows you to programmatically collect hardware performance counters (HWPC) in your code. While the user is supposed to manually insert PAPI routines to specify what HWPCs are measured and when to start/stop measuing them, CrayPat allows the user to just specify HWPC name(s) in an environment variable. Here are the steps to collect HWPCs with CrayPat:
+The Performance Application Programming Interface (PAPI) allows you to programmatically collect hardware performance counters (HWPC) in your code. While the user is supposed to manually insert PAPI routines to specify what HWPCs are measured and when to start/stop measuing them, CrayPat dramatically facilitate that process. Specifically, all the user has to do is to just specify HWPC name(s) in an environment variable. Here are the steps to collect HWPCs with CrayPat:
 
 ### Step 1: Find available hardware counters
 Available hardware counters can be find by `papi_avail`.
