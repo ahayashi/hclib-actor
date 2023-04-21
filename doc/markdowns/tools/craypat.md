@@ -102,7 +102,7 @@ PAT_region_end(1);
 ```
 This will generate a trace of interest in the performance data which can be found in the `pat_report`
 
-## Collecting hardware performance counters (HPWC)
+## Collecting hardware performance counters (HWPC)
 
 The Performance Application Programming Interface (PAPI) supplies a consistent interface and methodology for collecting performance counter information from various hardware and software components, including most major CPUs, GPUs, accelerators, interconnects, I/O systems, and power interfaces, as well as virtual cloud environments.
 
