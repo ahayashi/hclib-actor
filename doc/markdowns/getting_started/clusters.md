@@ -99,6 +99,7 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
 ```
 git clone https://github.com/jdevinney/bale.git bale
 cd bale/src/bale_classic
+export BALE_INSTALL=$PWD/build_${PLATFORM}
 ./bootstrap.sh
 python3 ./make_bale -s
 cd ../../../
@@ -125,7 +126,6 @@ source hclib-install/bin/hclib_setup_env.sh
 cd modules/bale_actor && make
 cd test
 unzip ../inc/boost.zip -d ../inc/
-export BALE_INSTALL=$PWD/bale/src/bale_classic/build_${PLATFORM}
 make
 cd ../../../../
 ```
@@ -234,4 +234,5 @@ Example output:
        0.106 seconds
     ```
     
+
 
