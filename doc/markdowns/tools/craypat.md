@@ -23,15 +23,18 @@ cd $HCLIB_ROOT/../modules/bale_actor/test/
 ```
 Create a tringle counting object file (.o file):
 ```
-CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I/$HOME/bale/src/bale_classic/build_ex/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L/$HOME/bale/src/bale_classic/build_ex/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -c triangle_selector.o triangle_selector.cpp -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
+CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I/$HCLIB_ROOT/include -I/$BALE_INSTALL/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L/$BALE_INSTALL/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -c triangle_selector.o triangle_selector.cpp -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
 ```
 Build a triangle counting executable file:
 ```
-CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I/$HOME/bale/src/bale_classic/build_ex/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L/$HOME/bale/src/bale_classic/build_ex/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -o triangle_selector triangle_selector.o -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
+CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I/$HCLIB_ROOT/include -I/$BALE_INSTALL/include -I/$HCLIB_ROOT/../modules/bale_actor/inc -L/$HCLIB_ROOT/lib -L/$BALE_INSTALL/lib -L/$HCLIB_ROOT/../modules/bale_actor/lib -o triangle_selector  triangle_selector.o -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
 ```
 !!! tip
 
-    It is a good idea to do `make triangle_selector` first to see the full compilation command. Then, first, copy and paste the full command and change `-o triangle_selector triangle_selector.cpp` to `-c triangle_selector triangle_selector.cpp` to create an object file (.o file). Second, copy and paste the command again and change `-o triangle_selector triangle_selector.cpp` to `-o triangle_selector triangle_selector.o` to create an executable.
+    It is recommended to do `make triangle_selector` first to see the full compilation command.
+    
+    - First, copy and paste the full command and change `-o triangle_selector triangle_selector.cpp` to `-c triangle_selector triangle_selector.cpp` to create an object file (.o file). 
+    - Second, copy and paste the command again and change `-o triangle_selector triangle_selector.cpp` to `-o triangle_selector triangle_selector.o` to create an executable.
 
 ### Step 3: Instrument the application using `pat_build`
 Generate a CrayPat instrumented executable using `pat_build`:
@@ -90,7 +93,7 @@ Run `pat_report` with the generated directory name, which will output a text rep
 pat_report ./triangle_selector+pat+174621-8716327t
 ```
 
-#### Example text report
+#### Exemplar text report
 ```
 CrayPat/X:  Version 23.03.0 Revision 46f710008  02/13/23 20:24:04
 Number of PEs (MPI ranks):   128
@@ -161,14 +164,14 @@ To install a desktop version, you can find the installer on Perlmutter as below:
 CrayPat performance API can be use to identify the region of interest (ROG) for analysis.
 
 - `PAT_record(int state)`
-	- Setting the recording state to **PAT_STATE_ON** or **PAT_STATE_OFF**
-	- Needs to be inserted before the ROG
+  - Setting the recording state to **PAT_STATE_ON** or **PAT_STATE_OFF**
+  - Needs to be inserted before the ROG
 - `PAT_region_begin(int id, char *label)`
-	- Defines the boundaries of a region
-	- Needs to be inserted at the start the ROG
+  - Defines the boundaries of a region
+  - Needs to be inserted at the start the ROG
 - `PAT_region_end(int id);`
-	- regions must be either separate or nested
-	- Needs to be inserted at the end of ROG
+  - regions must be either separate or nested
+  - Needs to be inserted at the end of ROG
 
 ### Example
 ```
@@ -180,7 +183,18 @@ triangle_selector();
 PAT_region_end(1);
 ...
 ```
-This will generate a trace of interest in the performance data which can be found in the `pat_report`.
+After generating the instrumented excutable with `pat_build` and run it, CrayPat will generate a trace of ROG in the performance data which can be found in the `pat_report`
+
+Exemplar output
+```
+Table 1:  Profile by Function Group and Function
+
+  Time% |     Time |     Imb. |  Imb. | Calls | Group
+...
+||  47.5% | 2.888249 | 0.000057 |  0.0% |   1.0 | #1.selector_function
+||==================================================================
+...
+```
 
 ## Collecting hardware performance counters (HWPC)
 
@@ -191,46 +205,64 @@ Available hardware counters can be find with `papi_avail`.
 
 Available hardware counters on **Perlmutter** 
 ```
-PAPI_L1_DCM  		Level 1 data cache misses
-PAPI_L2_DCM  		Level 2 data cache misses
-PAPI_L2_ICM  		Level 2 instruction cache misses
-PAPI_TLB_DM  		Data translation lookaside buffer misses
-PAPI_TLB_IM 		Instruction translation lookaside buffer misses
-PAPI_BR_MSP  		Conditional branch instructions mispredicted
-PAPI_TOT_INS  		Instructions completed
-PAPI_FP_INS  		Floating point instructions
-PAPI_BR_INS  		Branch instructions
-PAPI_VEC_INS  		Vector/SIMD instructions (could include integer)
-PAPI_TOT_CYC  		Total cycles
-PAPI_L2_DCH  		Level 2 data cache hits
-PAPI_L1_DCA 		Level 1 data cache accesses
-PAPI_L2_DCR  		Level 2 data cache reads
-PAPI_L2_ICH  		Level 2 instruction cache hits
-PAPI_L2_ICA  		Level 2 instruction cache accesses
-PAPI_L2_ICR  		Level 2 instruction cache reads
-PAPI_FML_INS  		Floating point multiply instructions
-PAPI_FAD_INS  		Floating point add instructions
-PAPI_FDV_INS  		Floating point divide instructions
-PAPI_FSQ_INS  		Floating point square root instructions
-PAPI_FP_OPS  		Floating point operations
+PAPI_L1_DCM     Level 1 data cache misses
+PAPI_L2_DCM     Level 2 data cache misses
+PAPI_L2_ICM     Level 2 instruction cache misses
+PAPI_TLB_DM     Data translation lookaside buffer misses
+PAPI_TLB_IM     Instruction translation lookaside buffer misses
+PAPI_BR_MSP     Conditional branch instructions mispredicted
+PAPI_TOT_INS      Instructions completed
+PAPI_FP_INS     Floating point instructions
+PAPI_BR_INS     Branch instructions
+PAPI_VEC_INS      Vector/SIMD instructions (could include integer)
+PAPI_TOT_CYC      Total cycles
+PAPI_L2_DCH     Level 2 data cache hits
+PAPI_L1_DCA     Level 1 data cache accesses
+PAPI_L2_DCR     Level 2 data cache reads
+PAPI_L2_ICH     Level 2 instruction cache hits
+PAPI_L2_ICA     Level 2 instruction cache accesses
+PAPI_L2_ICR     Level 2 instruction cache reads
+PAPI_FML_INS      Floating point multiply instructions
+PAPI_FAD_INS      Floating point add instructions
+PAPI_FDV_INS      Floating point divide instructions
+PAPI_FSQ_INS      Floating point square root instructions
+PAPI_FP_OPS     Floating point operations
 ```
 
 ### Step 2: Selecting the hardware counters
 Setting the environment variable `PAT_RT_PERFCTR` to specific events/group:
 
  - Predefined Counter Groups, e.g., `export PAT_RT_PERFCTR=0`.
- - Specify individual events (maximum of 4 event at a time), e.g. `export PAT_RT_PERFCTR="PAPI_L2_DCM,PAPI_L2_ICM"`.
+ - Specify individual events (maximum of 4 event at a time), e.g. `export PAT_RT_PERFCTR="PAPI_L2_DCM,PAPI_L2_ICM,PAPI_L2_DCH,PAPI_L2_DCR"`.
 
 !!! note
 
     Predefined Counter Groups can be found on slides 38 of [NERSC PerformanceTools](https://www.nersc.gov/assets/Uploads/PerformanceTools.pdf)
 
-### Step 3: Build and run the instrumented excutable with CrayPat
-Repeat same with the step in the above Step-by-Step section:
+### Step 3:  Run the instrumented excutable with CrayPat
+After exporting the hardware counter variable we just need to run the instrumented excutable and generate human-readable content with `pat_report`. A summary for the trace of ROG can be found in the text output of `pat_report`
 
-- Generate the instrumented excutable with `pat_build`
-- Run the excutable to get performance data
-- Generate human-readable content with `pat_report`
+Exemplar output
+```
+...
+Table 3:  Profile by Function Group and Function
+Group / Function / PE=HIDE
+==============================================================================
+  Total
+------------------------------------------------------------------------------
+  Time%                                  100.0% 
+  Time                                 6.079316 secs
+  Imb. Time                                  -- secs
+  Imb. Time%                                 -- 
+  Calls                  66.455 /sec      404.0 calls
+  PAPI_L2_DCM             0.062M/sec    378,368 misses
+  PAPI_L2_ICM             0.051M/sec    310,119 misses
+  PAPI_L2_DCH             0.001G/sec  6,453,273 hits
+  PAPI_L2_DCR             0.001G/sec  6,929,521 ops
+  Average Time per Call                0.015048 secs
+  CrayPat Overhead : Time  0.0%
+  ...
+```
 
 ## Further Readings
 
