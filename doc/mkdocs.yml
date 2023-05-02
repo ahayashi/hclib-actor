@@ -61,6 +61,7 @@ nav:
           - Hclib: tools/hclib.md
    - API Reference: api/reference.md
    - History: history/history.md
+   - Contributors: contributors.md
 
 
 markdown_extensions:
