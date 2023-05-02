@@ -23,11 +23,11 @@ cd $HCLIB_ROOT/../modules/bale_actor/test/
 ```
 Create a tringle counting object file (.o file):
 ```
-CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I/$HCLIB_ROOT/include -I/$BALE_INSTALL/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L/$BALE_INSTALL/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -c triangle_selector.o triangle_selector.cpp -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
+CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I$BALE_INSTALL/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L$BALE_INSTALL/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -c triangle_selector.o triangle_selector.cpp -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
 ```
 Build a triangle counting executable file:
 ```
-CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I/$HCLIB_ROOT/include -I/$BALE_INSTALL/include -I/$HCLIB_ROOT/../modules/bale_actor/inc -L/$HCLIB_ROOT/lib -L/$BALE_INSTALL/lib -L/$HCLIB_ROOT/../modules/bale_actor/lib -o triangle_selector  triangle_selector.o -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
+CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I$BALE_INSTALL/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L$BALE_INSTALL/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -o triangle_selector  triangle_selector.o -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
 ```
 !!! tip
 

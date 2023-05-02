@@ -4,7 +4,7 @@
 
 As discussed in the [background section](../background/bale.md), `hclib-actor` depends on Bale, which depends on either UPC or OpenSHMEM. Here we mainly explain steps to load OpenSHMEM, build bale, and build `hclib-actor` on three platforms: Perlmutter@NERSC, Cori@NERSC, Summit@ORNL, and PACE (Phoenix)@ GT.
 
-## Installation Scripts  
+## Installation/initialization Scripts  
 
 === "Perlmutter@NERSC"
 
@@ -22,121 +22,6 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
 
     [oshmem-slurm.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/oshmem-slurm.sh)
 
-## Initializing Scripts  
-
-=== "Perlmutter@NERSC"
-
-     [oshmem-perlmutter.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/oshmem-perlmutter.sh)
-
-=== "Cori@NERSC"
-
-     [oshmem-cori.sh]()
-
-=== "Summit@ORNL"
-
-    [oshmem-summit.sh]()
-
-=== "PACE@GATech"
-
-    [oshmem-slurm.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/oshmem-slurm.sh)
-
-
-## Load OpenSHMEM  
-
-=== "Perlmutter@NERSC"
-
-     Use Cray OpenSHMEMX
-     ```
-     module load cray-openshmemx/11.5.6
-     module load cray-pmi/6.1.7
-     export PLATFORM=ex
-     export CC=cc
-     export CXX=CC
-     ```
-
-=== "Cori@NERSC"
-
-     Use Cray SHMEM
-     ```
-     module swap PrgEnv-intel PrgEnv-gnu
-     module load cray-shmem 
-     module load python3
-     export PLATFORM=xc30
-     export CC=cc
-     export CXX=CC
-     ```
-
-=== "Summit@ORNL"
-
-    Use OpenMPI's SHMEM (OSHMEM)
-    ```
-    module load python
-    export PLATFORM=oshmem
-    export CC=oshcc
-    export CXX=oshc++
-    ```
-
-=== "PACE@GATech"
-
-    Use OpenMPI's SHMEM (OSHMEM)
-    ```
-    source ./oshmem-slurm.sh
-    ```
-
-!!! note
-
-    You need to re-run the above commands every time you login to a cluster/supercomputer. You can use the respective script for the platform using the above pre-prepared scripts (`source ./oshmem-{PLATFORM}.sh`).
-
-
-## Build Bale and HClib
-
-!!! note
-
-    PACE@GATech users can skip this part as the script automatically builds Bale and HClib
-
-### Bale
-
-```
-git clone https://github.com/jdevinney/bale.git bale
-cd bale/src/bale_classic
-export BALE_INSTALL=$PWD/build_${PLATFORM}
-./bootstrap.sh
-python3 ./make_bale -s
-cd ../../../
-```
-
-!!! note
-
-    On Perlmutter, do `patch -p1 < path/to/perlmutter.patch` in `bale` directory after `git clone`. You can find `perlmutter.patch` [here](https://github.com/ahayashi/hclib-actor/blob/f3bf2e15973f72cf6890fe189b166f1b271318db/cluster-scripts/perlmutter.patch).
-
-
-!!! note
-  
-    Bale will be installed in `bale/src/bale_classic/build_${PLATFORM}`
-    
-
-### HClib
-
-```
-git clone https://github.com/srirajpaul/hclib
-cd hclib
-git fetch && git checkout bale3_actor
-./install.sh
-source hclib-install/bin/hclib_setup_env.sh
-cd modules/bale_actor && make
-cd test
-unzip ../inc/boost.zip -d ../inc/
-make
-cd ../../../../
-```
-
-### Setting environment variables
-```
-export BALE_INSTALL=$PWD/bale/src/bale_classic/build_${PLATFORM}
-export HCLIB_ROOT=$PWD/hclib/hclib-install
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BALE_INSTALL/lib:$HCLIB_ROOT/lib:$HCLIB_ROOT/../modules/bale_actor/lib
-export HCLIB_WORKERS=1
-```
 
 ## Run
 
@@ -236,3 +121,103 @@ Example output:
     
 
 
+## Manual installation instructions
+
+This part can be done with the [Installation/initialization Scripts](https://hclib-actor.com/getting_started/clusters/#installation-scripts), but you can also manually install everything with the guide below.
+
+### Load OpenSHMEM  
+
+=== "Perlmutter@NERSC"
+
+     Use Cray OpenSHMEMX
+     ```
+     module load cray-openshmemx
+     module load cray-pmi
+     export PLATFORM=ex
+     export CC=cc
+     export CXX=CC
+     ```
+
+=== "Cori@NERSC"
+
+     Use Cray SHMEM
+     ```
+     module swap PrgEnv-intel PrgEnv-gnu
+     module load cray-shmem 
+     module load python3
+     export PLATFORM=xc30
+     export CC=cc
+     export CXX=CC
+     ```
+
+=== "Summit@ORNL"
+
+    Use OpenMPI's SHMEM (OSHMEM)
+    ```
+    module load python
+    export PLATFORM=oshmem
+    export CC=oshcc
+    export CXX=oshc++
+    ```
+
+=== "PACE@GATech"
+
+    Use OpenMPI's SHMEM (OSHMEM)
+    ```
+    source ./oshmem-slurm.sh
+    ```
+
+!!! note
+
+    You need to re-run the above commands every time you login to a cluster/supercomputer. You can use the respective script for the platform using the above pre-prepared scripts (`source ./oshmem-{PLATFORM}.sh`).
+
+
+### Build Bale and HClib
+
+!!! note
+
+    PACE@GATech users can skip this part as the script automatically builds Bale and HClib
+
+#### Bale
+
+```
+git clone https://github.com/jdevinney/bale.git bale
+cd bale/src/bale_classic
+export BALE_INSTALL=$PWD/build_${PLATFORM}
+./bootstrap.sh
+python3 ./make_bale -s
+cd ../../../
+```
+
+!!! note
+
+    On Perlmutter, do `patch -p1 < path/to/perlmutter.patch` in `bale` directory after `git clone`. You can find `perlmutter.patch` [here](https://github.com/ahayashi/hclib-actor/blob/f3bf2e15973f72cf6890fe189b166f1b271318db/cluster-scripts/perlmutter.patch).
+
+
+!!! note
+  
+    Bale will be installed in `bale/src/bale_classic/build_${PLATFORM}`
+    
+
+#### HClib
+
+```
+git clone https://github.com/srirajpaul/hclib
+cd hclib
+git fetch && git checkout bale3_actor
+./install.sh
+source hclib-install/bin/hclib_setup_env.sh
+cd modules/bale_actor && make
+cd test
+unzip ../inc/boost.zip -d ../inc/
+make
+cd ../../../../
+```
+
+#### Setting environment variables
+```
+export BALE_INSTALL=$PWD/bale/src/bale_classic/build_${PLATFORM}
+export HCLIB_ROOT=$PWD/hclib/hclib-install
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$BALE_INSTALL/lib:$HCLIB_ROOT/lib:$HCLIB_ROOT/../modules/bale_actor/lib
+export HCLIB_WORKERS=1
+```
