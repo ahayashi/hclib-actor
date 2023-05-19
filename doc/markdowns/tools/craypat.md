@@ -39,7 +39,7 @@ CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I$BALE_INSTALL/include
 ### Step 3: Instrument the application using `pat_build`
 Generate a CrayPat instrumented executable using `pat_build`:
 ```
-pat_build triangle_selector
+pat_build -w -g shmem triangle_selector
 ```
 
 !!! note
@@ -195,6 +195,10 @@ Table 1:  Profile by Function Group and Function
 ||==================================================================
 ...
 ```
+
+!!! note
+
+    Please be cautious that `lgp_barrier()` will affect the load blance result when analysing with CrayPat region API. Therefore, it is recommended to insert the region before the `lgp_barrier()` function.
 
 ## Collecting hardware performance counters (HWPC)
 
