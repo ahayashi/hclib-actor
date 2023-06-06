@@ -23,7 +23,7 @@ cd $HCLIB_ROOT/../modules/bale_actor/test/
 ```
 Create a tringle counting object file (.o file):
 ```
-CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I$BALE_INSTALL/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L$BALE_INSTALL/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -c triangle_selector.o triangle_selector.cpp -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
+CC -g -O3 -std=c++11 -DUSE_SHMEM=1 -I$HCLIB_ROOT/include -I$BALE_INSTALL/include -I$HCLIB_ROOT/../modules/bale_actor/inc -L$HCLIB_ROOT/lib -L$BALE_INSTALL/lib -L$HCLIB_ROOT/../modules/bale_actor/lib -c -o triangle_selector.o triangle_selector.cpp -lhclib -lrt -ldl -lspmat -lconvey -lexstack -llibgetput -lhclib_bale_actor -lm
 ```
 Build a triangle counting executable file:
 ```
@@ -50,8 +50,10 @@ pat_build -w -g shmem triangle_selector
 
     `pat_build` has different option that can trace a specific function(s)
     
+     - `-g`: trace Cray-provided library function group such as MPI and OpenSHMEM
      - `-u`: trace all user functions routine by routine
-     - `-T -w`: trace function
+     - `-w`: flag that enables tracing
+     - `-T -w`: trace user-defined functions
         - e.g, `pat_build -w -T selector_function`
 
 ### Step 4: Run the instrumented executable to get performance data
