@@ -23,6 +23,14 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
     [oshmem-slurm.sh](https://github.com/ahayashi/hclib-actor/blob/master/cluster-scripts/oshmem-slurm.sh)
 
 
+!!! tip
+
+     In order to run a job successfully every time after you login to a cluster/supercomputer, please make sure to
+
+     - Redirect to the directory where you initizally run the respective script for the platform using the above scripts.
+     - `source` the script again to set all environment variables.
+
+
 ## Run
 
 === "Perlmutter@NERSC"
@@ -104,11 +112,6 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
     ```
     sbatch example.sbatch
     ```
-
-!!! tip
-
-     Make sure that the environment variables above are properly set in a job.
-     
 
 Example output:
     ```
