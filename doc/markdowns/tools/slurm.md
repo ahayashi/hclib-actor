@@ -13,7 +13,7 @@ When specifying cpu-bind=cores, each PE will be bind to a physical core
 
 !!! note
 
-    On Perlmutter, each CPU-only compute node has a total of 128 physical cores with 2 hardware threads, so there are 256 logical CPUs total
+	On Perlmutter, each CPU-only compute node contains 2 sockets with a total of 128 physical cores where each core has 2 hardware threads, so there are 256 logical CPUs total. For more details, please refer to [Perlmutter Architecture](https://docs.nersc.gov/systems/perlmutter/architecture/)
 
 ### Examples at different scenarios
 
@@ -52,7 +52,7 @@ Hello from rank 2, on nid004547. (core affinity = 1,129)
 When specifying `-c 1` without setting `cpu-bind=cores` with 4 PEs:
 
 `srun -n 4 -c 1 check-mpi.cray.pm`
-As a result, each PE will run on one logical core, but may/may not run on one physical core
+As a result, each PE will run on one logical core, but two different PE may run within one physical core
 ```
 Hello from rank 0, on nid004547. (core affinity = 0)
 Hello from rank 1, on nid004547. (core affinity = 128)
@@ -74,7 +74,7 @@ Hello from rank 2, on nid004547. (core affinity = 32,160)
 When setting `cpu-bind=cores` and  `-c 1` with 4 PEs:
 
 `srun -n 4 -c 1 --cpu-bind=cores check-mpi.cray.pm`
-As a result, each PE will run on two logical core, but different PE may result in using same physical core.
+As a result, each PE will run on two logical core, but two different PE may run within one physical core
 ```
 Hello from rank 0, on nid004547. (core affinity = 0,128)
 Hello from rank 1, on nid004547. (core affinity = 1,129)
@@ -93,6 +93,5 @@ Hello from rank 3, on nid004547. (core affinity = 48,176)
 Hello from rank 2, on nid004547. (core affinity = 32,160)
 ```
 
-To make sure our goal here is to make sure **each PE bind to one physical core**, we should make sure that we set 
+To make sure our goal here is to make sure **each PE bind to one physical core** and **each socket has an equal number of PEs**, we should make sure that we set 
 `cpu-bind=cores` and **optionally set `-c 2`**
-
