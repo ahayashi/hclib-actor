@@ -17,15 +17,15 @@ To take a first step, let's first write an empty program that 1) initializes and
 #include "selector.h"
 // SPMD
 int main(int argc, char * argv[]) {
-  // Initialize SHMEM
-  shmem_init();
 
   const char *deps[] = { "system", "actor" };
+  // Initialize SHMEM is done at the very beginning of hclib::launch()
+  // shmem_init();
   hclib::launch(deps, 2, [=] {
     // do nothing
   });
-  // Finalize SHMEM
-  shmem_finalize();  
+  // Finalize SHMEM is done at the very end of hclib::launch()
+  //shmem_finalize();  
   return 0;
 }
 ```
@@ -48,9 +48,6 @@ void print_array(int *larray, const int N) {
 
 // SPMD
 int main(int argc, char * argv[]) {
-  // Initialize SHMEM
-  shmem_init();
-
   const char *deps[] = { "system", "actor" };
   hclib::launch(deps, 2, [=] {
     // allocate memory
@@ -63,8 +60,6 @@ int main(int argc, char * argv[]) {
     shmem_barrier_all();
     shmem_free(larray);
   });
-  // Finalize SHMEM
-  shmem_finalize();  
   return 0;
 }
 ```
@@ -154,9 +149,6 @@ public:
 
 // SPMD
 int main(int argc, char * argv[]) {
-  // Initialize SHMEM
-  shmem_init();
-
   const char *deps[] = { "system", "actor" };
   hclib::launch(deps, 2, [=] {
     // allocate memory
@@ -180,8 +172,6 @@ int main(int argc, char * argv[]) {
     shmem_barrier_all();
     shmem_free(larray);
   });
-  // Finalize SHMEM
-  shmem_finalize();
   return 0;
 }
 ```
