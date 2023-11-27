@@ -95,7 +95,7 @@ As discussed in the [background section](../background/bale.md), `hclib-actor` d
     #SBATCH -Joshmem                    # name of job
     #SBATCH --account=GT-XXXXXXX        # account to which job is charged
     #SBATCH -N 2                        # 2 nodes
-    #SBATCH -n 48                       # resources allocated, 16 processors
+    #SBATCH -n 48                       # resources allocated, 48 cores
     #SBATCH -t15                        # job will run at most 15mins
     #SBATCH -qinferno                   # job is submitted to inferno queue
     #SBATCH -ooshmem.out                # output file is named oshmem.out      
