@@ -17,9 +17,9 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 ## Posters
 
-* Genome Assembly Using an Asynchronous Distributed Actor-Based Approach. Souvadra Hati, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC’23, Poster Session, ACM-SRC Finalist). November 2023. [[link](https://sc23.supercomputing.org/proceedings/src_poster/src_poster_pages/spostg109.html)]
+* Genome Assembly Using an Asynchronous Distributed Actor-Based Approach. Souvadra Hati, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC23, Poster Session, ACM-SRC Finalist). November 2023. [[link](https://sc23.supercomputing.org/proceedings/src_poster/src_poster_pages/spostg109.html)]
 
-* Accelerating Actor-Based Distributed Triangle Counting. Aniruddha Mysore, Kaushik Ravichandran, Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC’23, Poster Session). November 2023. [[link](https://sc23.supercomputing.org/proceedings/tech_poster/tech_poster_pages/rpost187.html)]
+* Accelerating Actor-Based Distributed Triangle Counting. Aniruddha Mysore, Kaushik Ravichandran, Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC23, Poster Session). November 2023. [[link](https://sc23.supercomputing.org/proceedings/tech_poster/tech_poster_pages/rpost187.html)]
 
 
 ## Links
