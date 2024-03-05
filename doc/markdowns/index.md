@@ -11,6 +11,17 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177)]
 
+*  Towards Safe HPC: Productivity and Performance via Rust interfaces for a Distributed C++ Actors library. John T. Parrish, Nicole Wren, Tsz Hang Kiang, Akihiro Hayashi, Jeffrey Young, Vivek Sarkar. 20th International Conference on Managed Programming Languages & Runtimes (MPLR, co-located with SPLASH). October 2023. [[doi](https://doi.org/10.1145/3617651.3622992)]
+
+*  A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024.
+
+## Posters
+
+* Genome Assembly Using an Asynchronous Distributed Actor-Based Approach. Souvadra Hati, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC’23, Poster Session, ACM-SRC Finalist). November 2023. [[link](https://sc23.supercomputing.org/proceedings/src_poster/src_poster_pages/spostg109.html)]
+
+* Accelerating Actor-Based Distributed Triangle Counting. Aniruddha Mysore, Kaushik Ravichandran, Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC’23, Poster Session). November 2023. [[link](https://sc23.supercomputing.org/proceedings/tech_poster/tech_poster_pages/rpost187.html)]
+
+
 ## Links
 
 * [Github Repository](https://github.com/srirajpaul/hclib/tree/bale3_actor)
