@@ -13,7 +13,8 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 *  Towards Safe HPC: Productivity and Performance via Rust interfaces for a Distributed C++ Actors library. John T. Parrish, Nicole Wren, Tsz Hang Kiang, Akihiro Hayashi, Jeffrey Young, Vivek Sarkar. 20th International Conference on Managed Programming Languages & Runtimes (MPLR, co-located with SPLASH). October 2023. [[doi](https://doi.org/10.1145/3617651.3622992)]
 
-*  A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024.
+*  A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024. (to appear)
+*  Asynchronous Distributed Actor-based Approach to Jaccard Similarity for Genome Comparisons. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference on High Performance Computing (ISC). May 2024. (to appear)
 
 ## Posters
 
