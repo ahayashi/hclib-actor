@@ -54,8 +54,10 @@ nav:
           - The remote get pattern: details/get.md
           - The yield() operation: details/yield.md
    - Tools/Tips:
-       - Performance Tools:
+       - Tools:
           - CrayPat: tools/craypat.md
+          - HClib Trace: tools/trace.md
+          - HClib T_COMM: tools/tcomm.md
        - Tips:   
           - Slurm: tools/slurm.md
           - Hclib: tools/hclib.md
