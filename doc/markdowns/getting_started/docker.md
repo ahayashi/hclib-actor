@@ -4,7 +4,7 @@
 
 !!! info
 
-    Currently, Apple's M1/M2-based machines are not supported.
+    Apple's M1/M2/M3-based machines are now supported.
     
 !!! warning
 
