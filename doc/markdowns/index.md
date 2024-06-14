@@ -15,12 +15,15 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 *  A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024. Recipient of Best SCALE Challenge Award. (to appear)
 *  Asynchronous Distributed Actor-based Approach to Jaccard Similarity for Genome Comparisons. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference on High Performance Computing (ISC High Performance). May 2024. [[doi](https://doi.org/10.23919/ISC.2024.10528922)]
+*  Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Akihiro Hayashi, Jeffrey Young, Richard Vuduc, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. (to appear)
 
 ## Posters
 
 * Genome Assembly Using an Asynchronous Distributed Actor-Based Approach. Souvadra Hati, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC23, Poster Session, ACM-SRC Finalist). November 2023. [[link](https://sc23.supercomputing.org/proceedings/src_poster/src_poster_pages/spostg109.html)]
 
 * Accelerating Actor-Based Distributed Triangle Counting. Aniruddha Mysore, Kaushik Ravichandran, Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC23, Poster Session). November 2023. [[link](https://sc23.supercomputing.org/proceedings/tech_poster/tech_poster_pages/rpost187.html)]
+
+* Bottleneck Scenarios in use of the Conveyors Message Aggregation Library. Shubhendra Pal Singhal, Akihiro Hayashi, Vivek Sarkar. IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS24). May 2024. (to appear)
 
 
 ## Links
