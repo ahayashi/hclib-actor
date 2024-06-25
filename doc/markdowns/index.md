@@ -4,17 +4,20 @@
 This document describes an actor/selector-based C/C++ programming systems for distributed systems.
 
 ## Papers
-
+### The Programming Model and Runtime System
 * A Productive and Scalable Actor-based Programming System for PGAS Applications. Sri Raj Paul, Akihiro Hayashi, Kun Chen, and Vivek Sarkar. 22th International Conference on Computational Science (ICCS2022), June 2022. [[doi](https://doi.org/10.1007/978-3-031-08751-6_17), [pdf](https://www.iccs-meeting.org/archive/iccs2022/papers/133500232.pdf)]
 
 * A Fine-grained Asynchronous Bulk Synchronous parallelism model for PGAS applications. Sri Raj Paul, Akihiro Hayashi, Kun Chen, Youssef Elmougy, Vivek Sarkar. Journal of Computational Science, April 2023. [[doi](https://doi.org/10.1016/j.jocs.2023.102014)] _When citing our programming model and runtime system, please cite this paper._
 
-* Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177), [video](https://youtu.be/fMSbSHhsW0o)]
-
 *  Towards Safe HPC: Productivity and Performance via Rust interfaces for a Distributed C++ Actors library. John T. Parrish, Nicole Wren, Tsz Hang Kiang, Akihiro Hayashi, Jeffrey Young, Vivek Sarkar. 20th International Conference on Managed Programming Languages & Runtimes (MPLR, co-located with SPLASH). October 2023. [[doi](https://doi.org/10.1145/3617651.3622992)]
 
+### Applications
+* Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177), [video](https://youtu.be/fMSbSHhsW0o)]
+
 *  A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024. Recipient of Best SCALE Challenge Award. (to appear)
+
 *  Asynchronous Distributed Actor-based Approach to Jaccard Similarity for Genome Comparisons. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference on High Performance Computing (ISC High Performance). May 2024. [[doi](https://doi.org/10.23919/ISC.2024.10528922)]
+
 *  Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Akihiro Hayashi, Jeffrey Young, Richard Vuduc, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. (to appear)
 
 ## Posters
