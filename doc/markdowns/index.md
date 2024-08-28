@@ -11,7 +11,7 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Towards Safe HPC: Productivity and Performance via Rust interfaces for a Distributed C++ Actors library. John T. Parrish, Nicole Wren, Tsz Hang Kiang, Akihiro Hayashi, Jeffrey Young, Vivek Sarkar. 20th International Conference on Managed Programming Languages & Runtimes (MPLR, co-located with SPLASH). October 2023. [[doi](https://doi.org/10.1145/3617651.3622992)]
 
-* Enabling User-level Asynchronous Tasking in the FA-BSP Model - Case Study: Distributed Triangle Counting. Akihiro Hayashi, Shubhendra Pal Singhal, Youssef Elmougy, Jiawei Yang. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024.
+* Enabling User-level Asynchronous Tasking in the FA-BSP Model - Case Study: Distributed Triangle Counting. Akihiro Hayashi, Shubhendra Pal Singhal, Youssef Elmougy, Jiawei Yang. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024. (to appear)
 
 ### Applications
 * Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177), [video](https://youtu.be/fMSbSHhsW0o)]
@@ -24,7 +24,7 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 ### Performance Evaluations
 
-* On the Cloud We Can’t Wait: Asynchronous Actors Perform Even Better on the Cloud. Aniruddha Mysore, Youssef Elmougy, Akihiro Hayashi. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024.
+* On the Cloud We Can’t Wait: Asynchronous Actors Perform Even Better on the Cloud. Aniruddha Mysore, Youssef Elmougy, Akihiro Hayashi. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024. (to appear)
 
 ## Posters
 
@@ -32,7 +32,7 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Accelerating Actor-Based Distributed Triangle Counting. Aniruddha Mysore, Kaushik Ravichandran, Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC23, Poster Session). November 2023. [[link](https://sc23.supercomputing.org/proceedings/tech_poster/tech_poster_pages/rpost187.html)]
 
-* Bottleneck Scenarios in use of the Conveyors Message Aggregation Library. Shubhendra Pal Singhal, Akihiro Hayashi, Vivek Sarkar. IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS24, Poster Session). May 2024. (to appear)
+* Bottleneck Scenarios in use of the Conveyors Message Aggregation Library. Shubhendra Pal Singhal, Akihiro Hayashi, Vivek Sarkar. IEEE International Symposium on Performance Analysis of Systems and Software (ISPASS24, Poster Session). May 2024. [[doi](https://doi.org/10.1109/ISPASS61541.2024.00045)]
 
 
 ## Links
