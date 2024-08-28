@@ -3,8 +3,35 @@
   <figcaption>The FA-BSP Model</figcaption>
 </figure>
 
-Our proposal is to realize the FA-BSP (FABS) model by building on three ideas from past work in an integrated approach. 
+The Fine-grained Asynchronous Bulk Synchronous Parallel (FA-BSP) model is an extended version of [the BSP model](https://hclib-actor.com/background/bsp/) that facilitates fine-grained asynchronous point-to-point messaging even during the local computation. As illustrated in the figure above, each processing element (PE) performs 1) a local computation (the blue part), 2) asynchronous messaging (the arrows), and 3) message handlers (the red part) in an interleaved fashion. We employ [the actor model](https://hclib-actor.com/background/actor/) as a user-facing programming model to write a superstep as it inherently supports asynchronous messaging and message handling. 
 
-The first idea is the actor model, which enables distributed asynchronous computations via fine-grained active messages while ensuring that all messages are processed atomically within a single-mailbox actor. For FABS, we extend classical actors with multiple symmetric mailboxes for scalability, and with automatic termination detection of messages initiated in a superstep. 
+One motivating example is the vertex-centric graph programming model. Specifically, in each superstep, each vertex asynchronously communicates to its neighbors over the edges via actor messaging:
 
-The second idea is message aggregation, which we believe should be performed automatically to ensure that the FABS model can be supported with performance portability across different systems with different preferences for message sizes at the hardware level due to the overheads involved. The third idea is to build on an asynchronous tasking runtime within each node, and to extend it with message aggregation and message handling capabilities.
+``` c title="vertex centric programming with the FA-BSP model (PSEUDO CODE!)" linenums="1"
+// SPMD Execution (Each PE executes the same code)
+// superstep (User Code: local computation part)
+{
+    // for each vertex that belongs to the current PE
+    for (v: pe_local_vertices) {
+      // for each neighbor of the current vertex
+      for (neighbor: v.neighbors()) {
+        // asynchronously send a message to the neighbor
+        send(...); 
+      }
+    }
+    // barrier and/or collective
+}
+...
+// User Code: Actor Definition
+class MyActor {
+   ...
+   // The FA-BSP runtime calls this user-defined process function at a well-defined point
+   process(...) {
+     // process one message
+   }
+};
+```
+
+Here, in a superstep, each PE iterates over its local vertices' neighbors and sends a message to a specific neighbor with the `send()` API. The runtime switches back and forth between the superstep and the message handler part to interleave these parts in the superstep.
+
+The FA-BSP model typically provides excellent scalability and performance and outperforms state-of-the-art BSP implementations in [various large-scale graph applications](https://hclib-actor.com/#applications).
