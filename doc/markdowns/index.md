@@ -11,6 +11,8 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Towards Safe HPC: Productivity and Performance via Rust interfaces for a Distributed C++ Actors library. John T. Parrish, Nicole Wren, Tsz Hang Kiang, Akihiro Hayashi, Jeffrey Young, Vivek Sarkar. 20th International Conference on Managed Programming Languages & Runtimes (MPLR, co-located with SPLASH). October 2023. [[doi](https://doi.org/10.1145/3617651.3622992)]
 
+* Enabling User-level Asynchronous Tasking in the FA-BSP Model - Case Study: Distributed Triangle Counting. Akihiro Hayashi, Shubhendra Pal Singhal, Youssef Elmougy, Jiawei Yang. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024.
+
 ### Applications
 * Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177), [video](https://youtu.be/fMSbSHhsW0o)]
 
@@ -19,6 +21,10 @@ This document describes an actor/selector-based C/C++ programming systems for di
 * Asynchronous Distributed Actor-based Approach to Jaccard Similarity for Genome Comparisons. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference on High Performance Computing (ISC High Performance). May 2024. [[doi](https://doi.org/10.23919/ISC.2024.10528922)]
 
 * Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Akihiro Hayashi, Jeffrey Young, Richard Vuduc, Vivek Sarkar. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. (to appear)
+
+### Performance Evaluations
+
+* On the Cloud We Can’t Wait: Asynchronous Actors Perform Even Better on the Cloud. Aniruddha Mysore, Youssef Elmougy, Akihiro Hayashi. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024.
 
 ## Posters
 
