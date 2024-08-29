@@ -91,7 +91,7 @@ Here each PE allocates an integer array with N elements and initializes it. Noti
 
 !!! note 
 
-    While this example uses `shmem_malloc()` to create a globally accessible array, a regular malloc can be used. In that case, actor-based messaging is the only way to put/get data to/from remote PE's memory. We recommend using a regular malloc unless you want to use SHMEM's communication routines PLUS our actor-based messaging routines.
+    While this example uses `shmem_malloc()` to create a globally accessible array, a regular `malloc()` can also be used. In that case, actor-based messaging is the only way to put/get data to/from remote PE's memory. We recommend using a regular malloc unless the allocated data is supposed to use SHMEM's communication routines.
 
 ### Step 3: Write an actor program
 
