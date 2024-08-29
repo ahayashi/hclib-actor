@@ -32,6 +32,6 @@ class MyActor {
 };
 ```
 
-Here, in a superstep, each PE iterates over its local vertices' neighbors and sends a message to a specific neighbor with the `send()` API. The runtime switches back and forth between the superstep and the message handler part to interleave these parts in the superstep.
+Here, in a superstep, each PE iterates over its local vertices' neighbors and sends a message to a specific neighbor with the `send()` API. The runtime switches back and forth between the superstep, message handler, and internal communication to overlap computation and communication.
 
 The FA-BSP model typically provides excellent scalability and performance and outperforms state-of-the-art BSP implementations in [various large-scale graph applications](https://hclib-actor.com/#applications).
