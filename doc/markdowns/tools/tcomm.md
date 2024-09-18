@@ -116,3 +116,96 @@ shows the percentage.
 This profilling function is still experimental, therefore it has the following  limitations/caveats:
 -   The function can profile a Selector with multiple mailboxes, but the profiler assumes that the main part only does send to MB0, not MB1, MB2, …
 -   Use this function just for getting rough information on what part can be a bottleneck.
+
+## More application examplar result
+
+### Histogram
+Sbatch script example
+```
+#!/bin/bash
+#SBATCH -q regular
+#SBATCH -N 1
+#SBATCH -n 2 --ntasks-per-node=2
+#SBATCH -C cpu
+#SBATCH -t 00:05:00
+#SBATCH -ooshmem_%j_histo_trace.out
+
+source  ./perlmutter_setup.sh
+cd  $HCLIB_ROOT/../modules/bale_actor/test
+echo  "--------------------------------------------"
+srun  --cpu-bind=cores  ./histo_selector
+echo  "--------------------------------------------"
+```
+
+**Output**
+```
+Running histo on 2 threads
+buf_cnt (number of buffer pkgs)      (-b)= 1024
+Number updates / thread              (-n)= 1000000
+Table size / thread                  (-T)= 1000
+models_mask                          (-M)= 0
+     0.055 seconds
+histo [PE0] T_inside_finish (start - done): 134534228 cycles
+histo [PE0] T_wait (done - finish): 200900 cycles
+histo [PE0] T_outside_finish (start - finish): 134735128 cycles
+histo [PE0] T_sends (count=1000000): 108622566 cycles
+histo [PE0] T_send_in_process (count=0): 0 cycles
+histo [PE0] T_process (count=1000129): 25648406 cycles
+histo [PE0] TCOMM_PROFILING (T_MAIN, T_COMM, T_PROC, T_TOTAL), 25911662, 83175060, 25648406, 134735128
+histo [PE0] TCOMM_PROFILING (T_MAIN/T_TOTAL, T_COMM/T_TOTAL, T_PROC/T_TOTAL), 0.192316, 0.617323, 0.190362
+histo [PE1] T_inside_finish (start - done): 133603939 cycles
+histo [PE1] T_wait (done - finish): 1096963 cycles
+histo [PE1] T_outside_finish (start - finish): 134700902 cycles
+histo [PE1] T_sends (count=1000000): 107848089 cycles
+histo [PE1] T_send_in_process (count=0): 0 cycles
+histo [PE1] T_process (count=999871): 25657456 cycles
+histo [PE1] TCOMM_PROFILING (T_MAIN, T_COMM, T_PROC, T_TOTAL), 25755850, 83287596, 25657456, 134700902
+histo [PE1] TCOMM_PROFILING (T_MAIN/T_TOTAL, T_COMM/T_TOTAL, T_PROC/T_TOTAL), 0.191208, 0.618315, 0.190477
+```
+
+### Index Gather
+Sbatch script example
+```
+#!/bin/bash
+#SBATCH -q regular
+#SBATCH -N 1
+#SBATCH -n 2 --ntasks-per-node=2
+#SBATCH -C cpu
+#SBATCH -t 00:05:00
+#SBATCH -ooshmem_%j_ig_trace.out
+
+source  ./perlmutter_setup.sh
+cd  $HCLIB_ROOT/../modules/bale_actor/test
+echo  "--------------------------------------------"
+srun  --cpu-bind=cores  ./ig_selector
+echo  "--------------------------------------------"
+```
+
+**Output**
+```
+Running ig on 2 threads
+buf_cnt (number of buffer pkgs)      (-b)= 1024
+Number of Request / thread           (-n)= 1000000
+Table size / thread                  (-T)= 100000
+models_mask                          (-M)= 0
+models_mask is or of 1,2,4,8,16 for agi,exstack,exstack2,conveyor,alternate)
+     0.120 seconds
+ig [PE1] T_inside_finish (start - done): 291840251 cycles
+ig [PE1] T_wait (done - finish): 437570 cycles
+ig [PE1] T_outside_finish (start - finish): 292277821 cycles
+ig [PE1] T_sends (count=1000000): 265550829 cycles
+ig [PE1] T_send_in_process (count=1000665): 109491048 cycles
+ig [PE1] T_process (count=2000665): 193290221 cycles
+ig [PE1] TCOMM_PROFILING (T_MAIN, T_COMM, T_PROC, T_TOTAL), 26289422, 182189226, 83799173, 292277821
+ig [PE1] TCOMM_PROFILING (T_MAIN/T_TOTAL, T_COMM/T_TOTAL, T_PROC/T_TOTAL), 0.089947, 0.623343, 0.286711
+ig [PE0] T_inside_finish (start - done): 284089186 cycles
+ig [PE0] T_wait (done - finish): 8140370 cycles
+ig [PE0] T_outside_finish (start - finish): 292229556 cycles
+ig [PE0] T_sends (count=1000000): 257481362 cycles
+ig [PE0] T_send_in_process (count=999335): 107141854 cycles
+ig [PE0] T_process (count=1999335): 186535650 cycles
+ig [PE0] TCOMM_PROFILING (T_MAIN, T_COMM, T_PROC, T_TOTAL), 26607824, 186227936, 79393796, 292229556
+ig [PE0] TCOMM_PROFILING (T_MAIN/T_TOTAL, T_COMM/T_TOTAL, T_PROC/T_TOTAL), 0.091051, 0.637266, 0.271683
+```
+
+More example can also be find within the test directory

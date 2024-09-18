@@ -40,7 +40,7 @@ Sbatch script example
 #SBATCH -t 00:05:00
 #SBATCH -ooshmem_%j_TC_trace.out
 
-source  ./oshmem-perlmutter.sh
+source  ./perlmutter_setup.sh
 cd  $HCLIB_ROOT/../modules/bale_actor/test
 echo  "--------------------------------------------"
 srun  --cpu-bind=cores  ./triangle_selector  -f  small.mtx
@@ -72,3 +72,71 @@ The Format of the data is show as below:
 **SourceID (node,PE), DestID (node,pe), pkt size, <Timestamp (seconds)>**
 
 E.g. 3, 15, 1, 5, 16, 1689905738.916986
+
+
+## More application examplar result
+
+### Histogram
+Sbatch script example
+```
+#!/bin/bash
+#SBATCH -q regular
+#SBATCH -N 1
+#SBATCH -n 2 --ntasks-per-node=2
+#SBATCH -C cpu
+#SBATCH -t 00:05:00
+#SBATCH -ooshmem_%j_histo_trace.out
+
+source  ./perlmutter_setup.sh
+cd  $HCLIB_ROOT/../modules/bale_actor/test
+echo  "--------------------------------------------"
+srun  --cpu-bind=cores  ./histo_selector
+echo  "--------------------------------------------"
+```
+
+**Output**
+```
+Running histo on 2 threads
+buf_cnt (number of buffer pkgs)      (-b)= 1024
+Number updates / thread              (-n)= 1000000
+Table size / thread                  (-T)= 1000
+models_mask                          (-M)= 0
+    19.743 seconds
+Logical actor message trace enabled
+PE:0, Node 0
+PE:1, Node 1
+```
+
+### Index Gather
+Sbatch script example
+```
+#!/bin/bash
+#SBATCH -q regular
+#SBATCH -N 1
+#SBATCH -n 2 --ntasks-per-node=2
+#SBATCH -C cpu
+#SBATCH -t 00:05:00
+#SBATCH -ooshmem_%j_ig_trace.out
+
+source  ./perlmutter_setup.sh
+cd  $HCLIB_ROOT/../modules/bale_actor/test
+echo  "--------------------------------------------"
+srun  --cpu-bind=cores  ./ig_selector
+echo  "--------------------------------------------"
+```
+
+**Output**
+```
+Running ig on 2 threads
+buf_cnt (number of buffer pkgs)      (-b)= 1024
+Number of Request / thread           (-n)= 1000000
+Table size / thread                  (-T)= 100000
+models_mask                          (-M)= 0
+models_mask is or of 1,2,4,8,16 for agi,exstack,exstack2,conveyor,alternate)
+    39.603 seconds
+Logical actor message trace enabled
+PE:0, Node 0
+PE:1, Node 1
+```
+
+More example can also be find within the test directory
