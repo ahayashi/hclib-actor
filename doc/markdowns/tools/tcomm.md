@@ -117,7 +117,7 @@ This profilling function is still experimental, therefore it has the following  
 -   The function can profile a Selector with multiple mailboxes, but the profiler assumes that the main part only does send to MB0, not MB1, MB2, …
 -   Use this function just for getting rough information on what part can be a bottleneck.
 
-## More application examplar result
+## More application exemplar results
 
 ### Histogram
 Sbatch script example
@@ -208,4 +208,4 @@ ig [PE0] TCOMM_PROFILING (T_MAIN, T_COMM, T_PROC, T_TOTAL), 26607824, 186227936,
 ig [PE0] TCOMM_PROFILING (T_MAIN/T_TOTAL, T_COMM/T_TOTAL, T_PROC/T_TOTAL), 0.091051, 0.637266, 0.271683
 ```
 
-More example can also be find within the test directory
+More example can also be find within the test directory.

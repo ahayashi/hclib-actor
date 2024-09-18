@@ -74,7 +74,7 @@ The Format of the data is show as below:
 E.g. 3, 15, 1, 5, 16, 1689905738.916986
 
 
-## More application examplar result
+## More application exemplar results
 
 ### Histogram
 Sbatch script example
@@ -139,4 +139,4 @@ PE:0, Node 0
 PE:1, Node 1
 ```
 
-More example can also be find within the test directory
+More example can also be find within the test directory.
