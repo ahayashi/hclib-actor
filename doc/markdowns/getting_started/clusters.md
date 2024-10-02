@@ -168,19 +168,19 @@ This part can be done with the [Installation/initialization Scripts](https://hcl
 
     Use OpenMPI's SHMEM (OSHMEM)
     ```
-    source ./oshmem-slurm.sh
+     module load gcc
+     module load python
+     module load openmpi/4.1.4
+     export CC=oshcc
+     export CXX=oshc++
     ```
 
 !!! note
 
-    You need to re-run the above commands every time you login to a cluster/supercomputer. You can use the respective script for the platform using the above pre-prepared scripts (`source ./oshmem-{PLATFORM}.sh`).
+    You need to re-run the above commands every time you login to a cluster/supercomputer. You can use the respective script for the platform using the above pre-prepared scripts (`source ./{PLATFORM}_setup.sh` or `source ./oshmem-{PLATFORM}.sh`).
 
 
 ### Build Bale and HClib
-
-!!! note
-
-    PACE@GATech users can skip this part as the script automatically builds Bale and HClib
 
 #### Bale
 
