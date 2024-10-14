@@ -16,7 +16,7 @@ This document describes an actor/selector-based C/C++ programming systems for di
 ### Applications
 * Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177), [video](https://youtu.be/fMSbSHhsW0o)]
 
-* A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024. Recipient of Best SCALE Challenge Award. (to appear)
+* A Distributed, Asynchronous Algorithm for Large-Scale Internet Network Topology Analysis. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2024, co-located with CCGRID24), May 2024. Recipient of Best SCALE Challenge Award. [[doi](https://doi.org/10.1109/CCGrid59990.2024.00080)]
 
 * Asynchronous Distributed Actor-based Approach to Jaccard Similarity for Genome Comparisons. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference on High Performance Computing (ISC High Performance). May 2024. [[doi](https://doi.org/10.23919/ISC.2024.10528922)]
 
