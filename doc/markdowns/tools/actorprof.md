@@ -15,7 +15,7 @@ Please refer to [HClib-Actor](https://hclib-actor.com/getting_started/clusters/)
 
 ### Step 2: Update `HClib` and `Bale`
 Add test applications and physical trace to the module
- ``` 
+``` 
 source update.sh
 ```
 
