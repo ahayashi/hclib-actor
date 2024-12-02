@@ -18,9 +18,10 @@ Add test applications and physical trace to the module
  ``` 
 source update.sh
 ```
+
 **Note: Only need to run this script once after initial HClib and Bale libraries are built.**
 
-## Running instructions
+### Step 3: Run Actorprof Script
 Run the ActorProf bash script (`run_actorprof.sh`) which has 4 options:
 
 ```
@@ -32,11 +33,13 @@ Run the ActorProf bash script (`run_actorprof.sh`) which has 4 options:
    [1...N]                                        Selects the number of cores for the run
 
 ```
+
 ### Logical Trace
 E.g. Generate logical trace of triangle selector with **1D Cyclic** distribution on scale of 10 using 2 cores
 ``` 
 source run_actorprof.sh logical triangle_selector 10 2
 ```
+
 It will generate one trace file `*send.csv` for each PE and a Heatmap `application_logical.png`. In this example, three files `PE0_send.csv`, `PE1_send.csv` and `triangle_selector_logical.png` were generated since we ran this application on two threads.
 
 ### HWPC Trace
@@ -44,6 +47,7 @@ E.g. Generate HWPC trace of triangle selector with **1D Cyclic** distribution on
 ``` 
 source run_actorprof.sh papi triangle_selector 10 2
 ```
+
 It will generate two trace file `PE*_send.csv` and `PE*_papi.csv` for each PE, one Heatmap `logical.png`, and a bar graph `papi.png`. In this example, three files `PE0_send.csv`, `PE1_send.csv`, `logical.png`, and `papi.png` were generated since we ran this application on two threads.
 
 ### Physical trace
@@ -51,6 +55,7 @@ E.g. Generate physical trace of triangle selector with **1D Cyclic** distributio
 ``` 
 source run_actorprof.sh physical triangle_selector 10 2
 ```
+
 It will generate one trace file `physical.txt`  and a stacked bar graph `physical.png`.
 
 ### Overall Trace
@@ -58,6 +63,7 @@ E.g. Generate overall trace of triangle selector with **1D Cyclic** distribution
 ``` 
 source run_actorprof.sh overall triangle_selector 10 2
 ```
+
 It will generate the `overall.txt` trace file and a stacked bar graph `overall.png`.
 
 **Note: user can use `all` to generat all four trace mentioned above at once**
@@ -104,6 +110,7 @@ srun  -N 2 -n 32 --cpu-bind=cores ./triangle_selector_overall -f small.mtx &>ove
 ```
 srun  -N 2 -n 32 --cpu-bind=cores ./triangle_selector_physical -f small.mtx &> physical.txt
 ```
+
 `physical.txt` contains Physical message trace for every PE in one `.txt` file.
 
 ### Step 3: ActorProf Visualization
@@ -113,6 +120,7 @@ Four type of graphs can be generated with **ActorProf** with different flags usi
 ```
 source transfer.sh
 ```
+
 **Cautious: Please use the script or manually empty/remove the data directory every time generating a new trace file to aviod trace data overlap, which may lead to incorrect visualizing result.**
 
 Path to the data directory (`path`) and total number of PEs( `-n` or `--num_PEs` ) used to generate the trace files are required for running the **ActorProf**.
@@ -133,6 +141,7 @@ Example to run **ActorProf** visualizer using `actorprof.py` to generate overall
 ```
 python actorprof.py ./data -n 32 -s
 ```
+
 All result will be saved as an  `.png` figure.
 
 
