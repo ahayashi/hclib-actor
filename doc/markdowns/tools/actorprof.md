@@ -84,7 +84,7 @@ Below is an example of building the **1D-Cyclic Triangle Counting** application 
 ```
 cd $PWD/hclib/modules/bale_actor/test
 make triangle_selector_logical
-make triangle_selector_logical_papi
+make triangle_selector_papi
 make triangle_selector_overall
 make triangle_selector_physical
 ```
@@ -94,13 +94,13 @@ Here we will take **1D-Cyclic Triangle Counting**  to run as an example on `Perl
 
 1) To generate **Logical Message Trace and HWPC Trace**
 ```
-srun  -N 2 -n 32 --cpu-bind=cores ./triangle_selector_logical_papi -f small.mtx
+srun  -N 2 -n 32 --cpu-bind=cores ./triangle_selector_papi -f small.mtx
 ```
 
 It will generate two trace files (`*send.csv` and `*PAPI.csv`) for each PE. 
 In this example, 64 data files, i.e., `PE0_send.csv`, `PE0_PAPI.csv`, `PE1_send.csv`, `PE1_PAPI.csv`,..., will be generated since we ran this application on 32 threads.
 
-**Note: To generate logical trace only, please use triangle_selector_logical execuitable.**
+**Note: To generate logical trace only, please use triangle_selector_logical executable.**
 
 2) To generate **Overall Trace**
 ```
