@@ -2,7 +2,7 @@
 This document gives a brief guidance on how to generate trace for actor applications on COTS (typically x86) systems using **ActorProf**. For more details about ActorProf, please refer to [our paper](https://conferences.computer.org/sc-wpub/pdfs/SC-W2024-6oZmigAQfgJ1GhPL0yE3pS/555400b599/555400b599.pdf).
 
 ## Step-by-Step Guide
-Here we will take **Triangle Counting** selector as an example on `Perlmutter`:
+Here we will take **Triangle Counting** selector as an example on `Perlmutter`.For other machines, please follow the [Manual installation and run instructions](https://hclib-actor.com/tools/actorprof/#manual-installation-and-run-instructions)
 
 ### Step 1: Build `HClib` and `Bale`
 Build the HClib and bale libraries to setup the environment. For setting up `HClib` and `Bale` libraries on `Perlmutter`, please source the `perlumtter_setup.sh` script provided.
@@ -13,13 +13,12 @@ Please refer to [HClib-Actor](https://hclib-actor.com/getting_started/clusters/)
 
 **Note: please re-direct to current directory and source the setup script again to set all environment variables every time after you login to a cluster/supercomputer**
 
-### Step 2: Update `HClib` and `Bale`
-Add test applications and physical trace to the module
-``` 
-source update.sh
-```
+### step 2: Allocate interactive compute node
+Allocate to run the Actorprof scripts
 
-**Note: Only need to run this script once after initial HClib and Bale libraries are built.**
+```
+salloc --nodes 1 --qos interactive --time 00:10:00 --constraint cpu --account=mxxx
+```
 
 ### Step 3: Run Actorprof Script
 Run the ActorProf bash script (`run_actorprof.sh`) which has 4 options:
@@ -71,7 +70,11 @@ It will generate the `overall.txt` trace file and a stacked bar graph `overall.p
 ## Manual installation and run instructions¶
 If user decide to build and run Actorprof manually without using the ActorProf bash script (`run_actorprof.sh`), you can use the guide below. 
 
-### Step 1: Build Application with trace flag enabled
+### Step 1: Environment Setup
+
+Please refer to [HClib-Actor](https://hclib-actor.com/getting_started/clusters/) setup page for more details on how to build the HClib and bale libraries to setup the environment.
+
+### Step 2: Build Application with trace flag enabled
 * `-DENABLE_TRACE` flag for enabling logical message generation macro.
 * `-DENABLE_TRACE_PAPI` flag for enabling logical message and HWPC trace generation macro.
 * `-DENABLE_TCOMM_PROFILING` flag for enabling overall trace generation macros.
@@ -86,7 +89,7 @@ make triangle_selector_overall
 make triangle_selector_physical
 ```
 
-### Step 2: Trace Generation
+### Step 3: Trace Generation
 Here we will take **1D-Cyclic Triangle Counting**  to run as an example on `Perlmutter` interactive node.
 
 1) To generate **Logical Message Trace and HWPC Trace**
@@ -113,7 +116,7 @@ srun  -N 2 -n 32 --cpu-bind=cores ./triangle_selector_physical -f small.mtx &> p
 
 `physical.txt` contains Physical message trace for every PE in one `.txt` file.
 
-### Step 3: ActorProf Visualization
+### Step 4: ActorProf Visualization
 Four type of graphs can be generated with **ActorProf** with different flags using `actorprof.py`, please put all generated trace into the data directory before running **ActorProf**.
 
 `transfer.sh` can be used to create data dir in correct format and move all generated trace into the data directory. 
@@ -137,9 +140,9 @@ Path to the data directory (`path`) and total number of PEs( `-n` or `--num_PEs`
 
 **Note: please specify all flags when trying to profile all result.**
 
-Example to run **ActorProf** visualizer using `actorprof.py` to generate overall trace bar graph.
+Example to run **ActorProf** visualizer using `actorprof.py` to generate physical trace Heatmap.
 ```
-python actorprof.py ./data -n 32 -s
+python actorprof.py ./data -n 32 -p
 ```
 
 All result will be saved as an  `.png` figure.
