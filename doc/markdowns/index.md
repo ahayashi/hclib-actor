@@ -20,7 +20,9 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Asynchronous Distributed Actor-based Approach to Jaccard Similarity for Genome Comparisons. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. International Conference on High Performance Computing (ISC High Performance). May 2024. [[doi](https://doi.org/10.23919/ISC.2024.10528922)]
 
-* Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Jeffrey Young, Vivek Sarkar, Akihiro Hayashi, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. (to appear)
+* Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Jeffrey Young, Vivek Sarkar, Akihiro Hayashi, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. [[doi](https://doi.org/10.1109/SC41406.2024.00108)]
+
+* Asynchronous Distributed-Memory Parallel Algorithm for k-mer Counting. Souvadra Hati, Akihiro Hayashi, Richard Vuduc. 39th IEEE International Parallel & Distributed Processing Symposium (IPDPS25). June 2025. (to appear)
 
 ### Performance Evaluations/Tools
 
