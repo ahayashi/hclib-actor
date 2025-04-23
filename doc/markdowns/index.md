@@ -28,7 +28,7 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * On the Cloud We Can’t Wait: Asynchronous Actors Perform Even Better on the Cloud. Aniruddha Mysore, Youssef Elmougy, Akihiro Hayashi. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024. (to appear)
 
-* ActorProf: A Framework for Profiling and Visualizing Fine-grained Asynchronous Bulk Synchronous Parallel Execution. Jiawei Yang, Shubhendra Pal Singhal, Jun Shirako, Akihiro Hayashi, Vivek Sarkar. Workshop on Programming and Performance Visualization Tools (ProTools2024, co-located with SC24). (to appear)
+* ActorProf: A Framework for Profiling and Visualizing Fine-grained Asynchronous Bulk Synchronous Parallel Execution. Jiawei Yang, Shubhendra Pal Singhal, Jun Shirako, Akihiro Hayashi, Vivek Sarkar. SC24-W: Workshops of the International Conference for High Performance Computing, Networking, Storage and Analysis(SC24-Workshop). Nov 2024. [[doi](https://doi.org/10.1109/SCW63240.2024.00199)]
 
 ## Posters
 

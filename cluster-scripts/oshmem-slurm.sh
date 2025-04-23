@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # openmpi is for mpiexec
-module load gcc python openmpi/4.1.4
+module load gcc python openmpi/4.1.5
 
 export CC=oshcc
 export CXX=oshc++
