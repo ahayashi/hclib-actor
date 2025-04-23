@@ -13,6 +13,8 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Enabling User-level Asynchronous Tasking in the FA-BSP Model - Case Study: Distributed Triangle Counting. Akihiro Hayashi, Shubhendra Pal Singhal, Youssef Elmougy, Jiawei Yang. The Vivek Sarkar Festschrift Symposium (VIVEKFEST2024, co-located with SPLASH24). October 2024. (to appear)
 
+* Enhancing Productivity and Performance of HClib-Actor with Efficient Task Termination. Youssef Elmougy, Nirjhar Deb, Akihiro Hayashi, Vivek Sarkar. 27th Workshop on Advances in Parallel and Distributed Computational Models (APDCM, co-located with IPDPS25) (to appear).
+
 ### Applications
 * Highly Scalable Large-Scale Asynchronous Graph Processing using Actors. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2023, co-located with CCGRID23), May 2023. Recipient of Best SCALE Challenge Award. [[doi](https://ieeexplore.ieee.org/document/10181177), [video](https://youtu.be/fMSbSHhsW0o)]
 
@@ -23,6 +25,8 @@ This document describes an actor/selector-based C/C++ programming systems for di
 * Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Jeffrey Young, Vivek Sarkar, Akihiro Hayashi, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. [[doi](https://doi.org/10.1109/SC41406.2024.00108)]
 
 * Asynchronous Distributed-Memory Parallel Algorithm for k-mer Counting. Souvadra Hati, Akihiro Hayashi, Richard Vuduc. 39th IEEE International Parallel & Distributed Processing Symposium (IPDPS25). June 2025. (to appear)
+
+* Divide, Conquer, and Match: A Distributed and Asynchronous Approach for Subgraph Isomorphism. Youssef Elmougy, Akihiro Hayashi, Vivek Sarkar. Workshop on Graphs, Architectures, Programming, and Learning (GrAPL, co-located with IPDPS25) (to appear).
 
 ### Performance Evaluations/Tools
 
