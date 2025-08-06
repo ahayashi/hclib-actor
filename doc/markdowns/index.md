@@ -24,7 +24,7 @@ This document describes an actor/selector-based C/C++ programming systems for di
 
 * Asynchronous Distributed-Memory Parallel Algorithms for Influence Maximization. Shubhendra Pal Singhal, Souvadra Hati, Jeffrey Young, Vivek Sarkar, Akihiro Hayashi, Richard Vuduc. International Conference for High Performance Computing, Networking, Storage, and Analysis (SC24). Nov 2024. [[doi](https://doi.org/10.1109/SC41406.2024.00108)]
 
-* ActorISx: Exploiting Asynchrony for Scalable High-Performance Integer Sort. Youssef Elmougy, Shubhendra Pal Singhal, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2025, co-located with CCGRID25). May 2025 [[doi](https://doi.org/10.1109/CCGridW65158.2025.00047)]
+* ActorISx: Exploiting Asynchrony for Scalable High-Performance Integer Sort. Youssef Elmougy, Shubhendra Pal Singhal, Akihiro Hayashi, Vivek Sarkar. IEEE TCSC International Scalable Computing Challenge (SCALE 2025, co-located with CCGRID25). May 2025 [[doi](https://ieeexplore.ieee.org/abstract/document/11044500)]
 
 * Asynchronous Distributed-Memory Parallel Algorithm for k-mer Counting. Souvadra Hati, Akihiro Hayashi, Richard Vuduc. 39th IEEE International Parallel & Distributed Processing Symposium (IPDPS25). June 2025. [[preprint](https://doi.org/10.48550/arXiv.2505.04431)]
 
